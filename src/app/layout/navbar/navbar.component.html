@@ -1,0 +1,30 @@
+<nav class="navbar-dark bg-dark">
+  <main class="container">
+    <section class="row p-3">
+      <article class="col-lg-auto col-12">
+        <img class="navbar-brand" src="./assets/logo.png" alt="logo" [routerLink]="['']"/>
+      </article>
+      <form class="col-lg-5 col-12 d-flex">
+        <input
+          class="form-control m-2"
+          type="search"
+          placeholder="Buscar ..."
+          aria-label="Search"
+        />
+      </form>
+      <div class="col-lg-auto col-12 m-2 buttons" *ngIf="usuario == false">
+        <a type="button" class="btn btn-outline-light me-2" [routerLink]="['entrar']">
+          Entrar
+        </a>
+        <a type="button" class="btn btn-light" [routerLink]="['registrar']">
+          Registrarse
+        </a>
+      </div>
+      <div class="col-lg-2 col-12 d-flex justify-content-around user" *ngIf="usuario == true">
+        <i class="bi bi-cart" data-cart-size="0"></i>
+        <i class="bi bi-person-circle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
+        <app-user-options class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"></app-user-options>
+      </div>
+    </section>
+  </main>
+</nav>

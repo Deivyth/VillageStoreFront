@@ -1,0 +1,39 @@
+main{
+
+    section{
+
+        display: flex;
+        justify-content: center;
+
+        form{
+
+            label{
+                font-size: 0.7em;
+            }
+
+            div{
+                position: relative;
+                margin: 10px 0px;
+                display: flex;
+                flex-direction: column;
+
+                i{
+                    position: absolute;
+                    bottom: 5px;
+                    left: 8px;
+                }
+
+                input[type=email]{
+                    height: 34px;
+                    padding-left: 34px;
+                    border: 1px solid #797979;
+                    border-radius: 4px;
+                }
+            }
+
+            input[type=button]{
+                width: 100%;
+            }
+        }
+    }
+}

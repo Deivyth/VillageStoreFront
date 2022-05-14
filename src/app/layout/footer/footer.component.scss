@@ -1,0 +1,31 @@
+footer{
+    padding: 14px 10px;
+    margin-top: 10px;
+
+    section{
+
+        color: #fff;
+
+        article{
+
+            display: flex;
+            justify-content: space-evenly;
+
+            & div:first-child{
+                text-align: center;
+            }
+
+            div.social-network{
+                div.icons{
+                    display: flex;
+                    justify-content: center;
+                    i{
+                        width: 24px;
+                        margin: 4px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+main {
+
+    margin-top: 20px;
+
+    section{
+
+        display: flex;
+        justify-content: center;
+
+        article{
+
+            div{
+
+                position: relative;
+
+                input[type=button]{
+                    position: absolute;
+                    top: 20px;
+                    right: 0;
+                }
+            }
+        }
+    }
+}

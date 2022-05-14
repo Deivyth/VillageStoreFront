@@ -1,0 +1,49 @@
+nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    main{
+        section{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            article:first-child{
+                display: flex;
+                justify-content: center;
+            }
+    
+            div.buttons{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            div.user{
+              i{
+                  font-size: 26px;
+                  color: #fff;
+
+                &:first-child{
+                    position: relative;        
+                }
+
+                &:first-child:after{
+                    content: attr(data-cart-size);
+                    position: absolute;
+                    top: -6px;
+                    right: -16px;
+                    display: inline-block;
+                    padding: 0.2em 0.4em;
+                    font-size: 0.65em;
+                    font-weight: 700;
+                    line-height: 1;
+                    border-radius: 0.25rem;
+                    background-color: #32CD30;
+                  }
+              }  
+            }
+        }
+    }
+}

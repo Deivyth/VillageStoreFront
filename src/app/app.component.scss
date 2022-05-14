@@ -1,0 +1,12 @@
+:host{
+    display: block;
+    height: 100%;
+}
+
+div{
+    position: inherit;
+    min-height: calc(100% - 92px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,0 +1,19 @@
+<main class="container mt-2" *ngIf="product">
+    <section class="row">
+        <article class="col-md-5 col-12">
+            <img [src]="product.getImage()" alt="{{product.getName()}}">
+        </article>
+        <article class="col-md-4 col-6">
+            <h4>{{product.getName()}}</h4>
+            <p>{{product.getDescription()}}</p>
+        </article>
+        <article class="col-md-3 col-12">
+            <div class="row">
+                <h5>{{product.getPrice() | currencyEUR}}</h5>
+                <span>Cantidad: </span>
+                <input type="button" class="mt-2 mb-2" value="Comprar" (click) = "buy()">
+                <input type="button" value="Añadir a la cesta" (click) = "addToCart()">
+            </div>
+        </article>
+    </section>
+</main>

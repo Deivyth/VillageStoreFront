@@ -1,0 +1,21 @@
+<main class="container">
+    <section class="row">
+        <article class="col-8">
+            <div *ngFor="let product of products">
+                <img [src]="product.getImage()" alt="{{product.getName()}}">
+                <div>
+                    <div>
+                        <p>{{product.getName()}}</p>
+                        <p>{{product.getPrice()}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+        <article class="col-4">
+            <header>
+                <h4>Resumen Pedido</h4>
+            </header>
+        </article>
+    </section>
+</main>

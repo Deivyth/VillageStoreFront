@@ -38,12 +38,12 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   buy(){
-    this.cartService.addProductId(this.idProduct);
+    this.cartService.addProductToCart(1,this.product!);
     this.router.navigate(['usuario/carrito']);
   }
 
   addToCart(){
-    this.cartService.addProductId(this.idProduct);
+    this.cartService.addProductToCart(1,this.product!);
   }
 
 }

@@ -11,12 +11,12 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]>{
-    const urlEndPoint: string = "http://localhost:3001/products";
+    const urlEndPoint: string = "http://localhost:8080/api/products";
     return this.http.get<IProduct[]>(urlEndPoint)
   }
 
   getProduct(idProduct: number): Observable<IProduct>{
-    const urlEndPoint: string = "http://localhost:3001/products/"+idProduct;
+    const urlEndPoint: string = "http://localhost:8080/api/products/"+idProduct;
     return this.http.get<IProduct>(urlEndPoint);
   }
 

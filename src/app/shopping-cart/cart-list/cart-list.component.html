@@ -1,21 +1,23 @@
 <main class="container">
     <section class="row">
-        <article class="col-8">
-            <div *ngFor="let product of products">
-                <img [src]="product.getImage()" alt="{{product.getName()}}">
-                <div>
-                    <div>
-                        <p>{{product.getName()}}</p>
-                        <p>{{product.getPrice()}}</p>
+        <article class="col-md-7 col-12">
+            <div *ngFor="let item of cart" class="row" [routerLink]="['/productos', item.getProductId()]">
+                <img [src]="'data:image/png;base64,'+item.getProductImage()" alt="{{item.getProductName()}}" class="col-md-4">
+                <div class="col-8">
+                    <div class="info">
+                        <p>{{item.getProductName()}}</p>
+                        <p>{{item.getProductPrice()! | currencyEUR}}</p>
                     </div>
                 </div>
+                <hr>
             </div>
-
         </article>
-        <article class="col-4">
-            <header>
+        <article class="col-md-4 col-12 offset-md-1">
+            <div class="row summary">
                 <h4>Resumen Pedido</h4>
-            </header>
+                <p>Precio total:  {{totalPrice | currencyEUR}}</p>
+                <a class="btn btn-primary">Comprar</a>
+            </div>
         </article>
     </section>
 </main>

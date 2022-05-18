@@ -1,7 +1,7 @@
 <main class="container mt-2" *ngIf="product">
     <section class="row">
         <article class="col-md-5 col-12">
-            <img [src]="product.getImage()" alt="{{product.getName()}}">
+            <img [src]="'data:image/png;base64,'+product.getImage()" alt="{{product.getName()}}">
         </article>
         <article class="col-md-4 col-6">
             <h4>{{product.getName()}}</h4>

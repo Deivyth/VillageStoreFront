@@ -2,3 +2,7 @@
 html, body {
     height: 100%;
 }
+
+$primary: #32CD30;
+
+@import "bootstrap/scss/bootstrap.scss";

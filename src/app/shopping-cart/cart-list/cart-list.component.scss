@@ -5,10 +5,17 @@ main{
     section{
         article{
             img{
-                width: 40px;
+                padding-bottom: 14px;
+                width: 20%;
             }
-            div{
-
+            div.info{
+                display: flex;
+                justify-content: space-between;
+            }
+            div.summary{
+                padding: 10px;
+                border: 1px solid #000;
+                border-radius: 4px;
             }
         }
     }

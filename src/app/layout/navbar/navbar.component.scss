@@ -29,7 +29,7 @@ nav{
                     position: relative;        
                 }
 
-                &:first-child:after{
+                &:first-child span{
                     content: attr(data-cart-size);
                     position: absolute;
                     top: -6px;

@@ -33,7 +33,7 @@ export class ProductDetailsComponent implements OnInit {
 
   private getProduct(idProduct: number): void{
     this.productService.getProduct(idProduct).subscribe({
-      next: (IProduct) => { this.product = new Product(IProduct.id, IProduct.supplier, IProduct.category, IProduct.name, IProduct.price, IProduct.description, IProduct.image); },
+      next: (IProduct) => { this.product = new Product(IProduct.id, IProduct.name, IProduct.price,IProduct.supplierId, IProduct.categoryId,IProduct.supplierName,IProduct.categoryName, IProduct.description, IProduct.image); },
       error: (err) => {}
     });
   }

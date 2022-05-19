@@ -1,32 +1,38 @@
 export class Product{
 
-    private id: number;
-    private supplier: number;
-    private category: number;
-    private name: string;
+    private id: number | undefined;
+    private name: string | undefined;
     private price: number;
-    private description: string;
-    private image: string;
+    private supplierId?: number | undefined;
+    private categoryId?: number;
+    private supplierName?: string;
+    private categoryName?: string;
+    private description?: string;
+    private image?: string;
 
     constructor(
-        id: number, 
-        supplier: number, 
-        category: number, 
+        id: number | undefined, 
         name: string, 
         price: number, 
-        description: string, 
-        image: string
+        supplierId?: number, 
+        categoryId?: number, 
+        supplierName?: string, 
+        categoryName?: string, 
+        description?: string, 
+        image?: string
     ) {
         this.id = id
-        this.supplier = supplier
-        this.category = category
         this.name = name
         this.price = price
+        this.supplierId = supplierId
+        this.categoryId = categoryId
+        this.supplierName = supplierName
+        this.categoryName = categoryName
         this.description = description
         this.image = image
     }
 
-    public getId(): number {
+    public getId(): number | undefined{
         return this.id;
     }
 
@@ -34,23 +40,7 @@ export class Product{
         this.id = id;
     }
 
-    public getSupplier(): number {
-        return this.supplier;
-    }
-
-    public setSupplier(supplier: number): void {
-        this.supplier = supplier;
-    }
-
-    public getCategory(): number {
-        return this.category;
-    }
-
-    public setCategory(category: number): void {
-        this.category = category;
-    }
-
-    public getName(): string {
+    public getName(): string | undefined{
         return this.name;
     }
 
@@ -66,7 +56,39 @@ export class Product{
         this.price = price;
     }
 
-    public getDescription(): string {
+    public getSupplierId(): number | undefined {
+        return this.supplierId;
+    }
+
+    public setSupplierId(supplierId: number | undefined): void {
+        this.supplierId = supplierId;
+    }
+
+    public getCategoryId(): number | undefined {
+        return this.categoryId;
+    }
+
+    public setCategoryId(categoryId: number | undefined): void {
+        this.categoryId = categoryId;
+    }
+
+    public getSupplierName(): string | undefined {
+        return this.supplierName;
+    }
+
+    public setSupplierName(supplierName: string): void {
+        this.supplierName = supplierName;
+    }
+
+    public getCategoryName(): string | undefined {
+        return this.categoryName;
+    }
+
+    public setCategoryName(categoryName: string | undefined): void {
+        this.categoryName = categoryName;
+    }
+
+    public getDescription(): string | undefined {
         return this.description;
     }
 
@@ -74,11 +96,13 @@ export class Product{
         this.description = description;
     }
 
-    public getImage(): string {
+    public getImage(): string | undefined {
         return this.image;
     }
 
     public setImage(image: string): void {
         this.image = image;
     }
+
+    
 }

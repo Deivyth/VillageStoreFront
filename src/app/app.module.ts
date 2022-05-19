@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule, HttpRequest } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,12 @@ import { ChangeComponent } from './user/menu/change-menu/change.component';
 import { ChangeEmailComponent } from './user/menu/change-email/change-email.component';
 import { ChangePasswordComponent } from './user/menu/change-password/change-password.component';
 import { CartListComponent } from './shopping-cart/cart-list/cart-list.component';
+
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -43,8 +51,14 @@ import { CartListComponent } from './shopping-cart/cart-list/cart-list.component
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule, 
+    ReactiveFormsModule,
+    AutoCompleteModule,
+    ToastModule,
+    MessageModule,
+    MessagesModule
   ],
   providers: [
     { 

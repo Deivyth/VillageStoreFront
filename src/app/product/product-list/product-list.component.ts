@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
     this.serviceProduct.getProducts().subscribe({
       next: (productRest) => { 
         productRest.forEach((IProduct)=> {
-          let product = new Product(IProduct.id, IProduct.supplier, IProduct.category, IProduct.name, IProduct.price, IProduct.description, IProduct.image);
+          let product = new Product(IProduct.id, IProduct.name, IProduct.price,IProduct.supplierId, IProduct.categoryId,IProduct.supplierName,IProduct.categoryName, IProduct.description, IProduct.image);
           this.products.push(product);
         })
       },

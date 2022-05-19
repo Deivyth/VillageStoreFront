@@ -1,26 +1,86 @@
+<p-toast></p-toast>
+
 <main class="container mt-2">
     <section class="row">
-        <form action="" class="col-lg-5 col-md-6 col-sm-8 col-10">
-            <div>
-                <label for="email">Foto</label>
-                <input type="file">
+        <form class="col-lg-5 col-md-6 col-sm-8 col-10" *ngIf="itemForm" [formGroup]="itemForm" novalidate autocomplete="off" class="item-form">
+            
+            <div class="form-group">
+                <img  *ngIf="product!.getImage()" [src]="'data:image/jpeg;base64,'+ product!.getImage()">
+                <img  *ngIf="product!.getImage() === undefined" src="./assets/box.png">
+                <label for="image">Imagen</label>
+                <input type="file" id="image" class="form-control" (change)="includeImageInItem($event)">
             </div>
-            <div>
+
+            <!-- CATEGORY -->
+            <div class="form-group">
+                <label for="categoryId">Categoria</label>
+                <p-autoComplete styleClass="categories" formControlName ="category" name="category" [suggestions]="categories" 
+                (completeMethod)="getCategories($event)" field="name" 
+                (onSelect)="categorySelected()" (onClear)="categoryUnselected()" 
+                [required]="true" [forceSelection]="true" [dropdown]="true"></p-autoComplete>
+            </div>
+
+            <div *ngIf="(itemForm.get('category')!.dirty && itemForm.get('category')!.errors)">
+                <small class="form-text text-danger" *ngIf="itemForm.get('category')!.errors!['required']">
+                    Este campo es requerido
+                </small>
+            </div>
+            
+            <!-- NAME  -->
+
+            <div class="form-group">
                 <label for="">Nombre</label>
                 <i class="bi bi-box2-heart"></i>
-                <input type="text" placeholder="Nombre">
+                <input type="text" placeholder="Nombre" formControlName="name">
             </div>
-            <div>
+
+            <div *ngIf="(itemForm.get('name')!.dirty && itemForm.get('name')!.errors)">
+                <small class="form-text text-danger" *ngIf="itemForm.get('name')!.errors!['required']">
+                    Este campo es requerido
+                </small>
+        
+                <small class="form-text text-danger" *ngIf="itemForm.get('name')!.errors!['minlength']">
+                    Tamaño minimo de 3 caracteres
+                </small>
+            </div>
+
+            <!-- DESCRIPTION  -->
+
+            <div class="form-group">
                 <label for="">Descripcion</label>
                 <i class="bi bi-pencil-fill"></i>
-                <textarea placeholder="Descripcion"></textarea>
+                <textarea placeholder="Descripcion" formControlName="description"></textarea>
             </div>
-            <div>
+
+            <div *ngIf="(itemForm.get('description')!.dirty && itemForm.get('description')!.errors)">
+                <small class="form-text text-danger" *ngIf="itemForm.get('description')!.errors!['required']">
+                    Este campo es requerido
+                </small>
+        
+                <small class="form-text text-danger" *ngIf="itemForm.get('description')!.errors!['minlength']">
+                    Tamaño minimo de 3 caracteres
+                </small>
+            </div>
+
+            <!-- PRICE  -->
+
+            <div class="form-group">
                 <label for="">Precio</label>
                 <i class="bi bi-currency-euro"></i>
-                <input type="text" placeholder="Precio">
+                <input type="text" placeholder="Precio" formControlName="price">
             </div>
-            <input type="button" value="Crear">
+
+            <div *ngIf="(itemForm.get('price')!.dirty && itemForm.get('price')!.errors)">
+                <small class="form-text text-danger" *ngIf="itemForm.get('price')!.errors!['required']">
+                    Este campo es requerido
+                </small>
+        
+                <small class="form-text text-danger" *ngIf="itemForm.get('price')!.errors!['min']">
+                    El valor debe ser positvo
+                </small>
+            </div>
+
+            <input type="button" value="Crear" (click)="saveProduct()" [disabled]="itemForm.invalid" class="btn btn-primary">
         </form>
     </section>
 </main>

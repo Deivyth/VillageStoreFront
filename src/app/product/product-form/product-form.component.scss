@@ -4,36 +4,6 @@ main{
 
         display: flex;
         justify-content: center;
-
-        form{
-
-            div{
-                position: relative;
-                margin: 10px 0px;
-                display: flex;
-                flex-direction: column;
-
-                label{
-                    font-size: 0.7em;
-                }
-
-                i{
-                    position: absolute;
-                    bottom: 5px;
-                    left: 8px;
-                }
-
-                input[type=text], input[type=password], textarea{
-                    height: 34px;
-                    padding-left: 34px;
-                    border: 1px solid #797979;
-                    border-radius: 4px;
-                }
-            }
-
-            input[type=button]{
-                width: 100%;
-            }
-        }
+        
     }
 }

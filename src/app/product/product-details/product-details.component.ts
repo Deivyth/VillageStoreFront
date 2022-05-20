@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from 'src/app/shopping-cart/cart.model';
 import { CartService } from 'src/app/shopping-cart/cart.service';
@@ -14,17 +15,22 @@ export class ProductDetailsComponent implements OnInit {
 
   idProduct: number | any;
   product?: Product;
+  cart? : Cart;
+
+  cartForm?: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     this.getIdProduct();
     this.getProduct(this.idProduct);
+    this.buildForm();
   }
 
   private getIdProduct(): void{
@@ -38,15 +44,52 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  private buildForm(): void {
+    this.cartForm = this.formBuilder.group({
+      quantity: [0, [Validators.required, Validators.min(0)]]
+    })
+  }
+
+  private updateForm(cart: Cart): void{
+    this.cartForm?.patchValue({
+      productId: this.product?.getId(),
+      supplierId: cart.getUserId(),
+      quantity: cart.getQuantity()
+      
+    })
+  }
+
+  private createFromForm() {
+    //To Do
+    return {
+      ...this.cart,
+      productId: this.product?.getId(),
+      quantity: this.cartForm?.get(['quantity'])!.value
+    }
+  }
+
+  //To Do
   buy(){
-    let cart: Cart = new Cart(this.product?.getId(),3)
-    this.cartService.addProductToCart(1,cart!);
+    const itemToSave: any = this.createFromForm();
+    console.log(itemToSave);
+    this.cartService.addProductToCart(1,itemToSave).subscribe({
+      next: ( cart ) => {},
+      error: ( err ) => {}
+
+    });
     this.router.navigate(['usuario/carrito']);
   }
 
   addToCart(){
-    let cart: Cart = new Cart(this.product?.getId(),3)
-    this.cartService.addProductToCart(1,cart!);
+    const itemToSave: any = this.createFromForm();
+    console.log(itemToSave);
+    this.cartService.addProductToCart(1,itemToSave!).subscribe({
+      next: ( cart ) => {
+        
+      },
+      error: ( err ) => {}
+
+    });
   }
 
 }

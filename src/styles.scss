@@ -80,8 +80,10 @@ $primary: #32CD30;
             border-radius: 4px;
         }
 
-        input[type=text]:focus{
-            
+        input[type=number] {
+            height: 34px;
+            border: 1px solid #797979;
+            border-radius: 4px;
         }
 
         input{
@@ -100,7 +102,7 @@ $primary: #32CD30;
 
     }
 
-    input[type=button]{
+    input[type=button] {
         width: 100%;
         border-radius: 0.25rem;
     }

@@ -2,36 +2,34 @@ export class Cart {
 
     private productId?: number;
     private quantity?: number;
-    private userId?: number;
+    private supplierId?: number;
     private productName?: string;
     private productPrice?: number;
     private productImage?: string;
     
-
-
-  constructor(
-    userId?: number, 
-    productId?: number, 
-    productName?: string, 
-    productPrice?: number, 
-    productImage?: string, 
-    quantity?: number
-) {
-    this.userId = userId
-    this.productId = productId
-    this.productName = productName
-    this.productPrice = productPrice
-    this.productImage = productImage
-    this.quantity = quantity
-  }
+    constructor(
+        userId?: number, 
+        productId?: number, 
+        productName?: string, 
+        productPrice?: number, 
+        productImage?: string, 
+        quantity?: number
+    ) {
+        this.supplierId = userId
+        this.productId = productId
+        this.productName = productName
+        this.productPrice = productPrice
+        this.productImage = productImage
+        this.quantity = quantity
+    }
 
 
     public getUserId(): number | undefined {
-        return this.userId;
+        return this.supplierId;
     }
 
     public setUserId(userId: number): void {
-        this.userId = userId;
+        this.supplierId = userId;
     }
 
     public getProductId(): number | undefined {
@@ -66,11 +64,11 @@ export class Cart {
         this.productImage = productImage;
     }
 
-    public getQuantity?(): number {
-        return this.quantity!;
+    public getQuantity(): number | undefined{
+        return this.quantity;
     }
 
-    public setQuantity?(quantity?: number): void {
+    public setQuantity(quantity?: number | undefined): void {
         this.quantity = quantity;
     }
 

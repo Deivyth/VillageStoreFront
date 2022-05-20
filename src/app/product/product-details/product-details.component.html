@@ -1,18 +1,39 @@
 <main class="container mt-2" *ngIf="product">
     <section class="row">
         <article class="col-md-5 col-12">
-            <img [src]="'data:image/png;base64,'+product.getImage()" alt="{{product.getName()}}">
+            <img  *ngIf="product.getImage()" [src]="'data:image/jpeg;base64,'+ product!.getImage()">
+            <img  *ngIf="product.getImage() == undefined" src="./assets/box.png">
         </article>
         <article class="col-md-4 col-6">
-            <h4>{{product.getName()}}</h4>
-            <p>{{product.getDescription()}}</p>
+            <div class="info">
+                <h4>{{product.getName()}}</h4>
+                <p>{{product.getDescription()}}</p>
+            </div>
         </article>
         <article class="col-md-3 col-12">
-            <div class="row">
+            <div class="row control">
+                <label for="">Precio:</label>
                 <h5>{{product.getPrice() | currencyEUR}}</h5>
-                <span>Cantidad: </span>
-                <input type="button" class="mt-2 mb-2" value="Comprar" (click) = "buy()">
-                <input type="button" value="Añadir a la cesta" (click) = "addToCart()">
+                <form class="item-form" *ngIf="cartForm" [formGroup]="cartForm" novalidate autocomplete="off">
+                    <div>
+                        <label>Cantidad: </label>
+                        <input type="number" formControlName="quantity">
+
+                        <div *ngIf="(cartForm.get('quantity')!.dirty && cartForm.get('quantity')!.errors)">
+                            <small class="form-text text-danger" *ngIf="cartForm.get('quantity')!.errors!['required']">
+                                Este campo es requerido
+                            </small>
+                    
+                            <small class="form-text text-danger" *ngIf="cartForm.get('quantity')!.errors!['min']">
+                                El valor debe ser positvo
+                            </small>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="button" class="mt-2 mb-2 btn btn-outline-primary" value="Comprar" (click) = "buy()">
+                        <input type="button" class="btn btn-primary" value="Añadir a la cesta" (click) = "addToCart()">
+                    </div>
+                </form>
             </div>
         </article>
     </section>

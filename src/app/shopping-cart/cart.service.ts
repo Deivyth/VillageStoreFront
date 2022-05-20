@@ -17,7 +17,7 @@ export class CartService {
 
   addProductToCart(userId: number, cart: Cart) {
     const urlEndPoint: string = "http://localhost:8080/api/users/"+ userId +"/cart";
-    return this.http.put<Product>(urlEndPoint, cart);
+    return this.http.put<Cart>(urlEndPoint, cart);
   }
 
   getCartProducts(userId: number) {

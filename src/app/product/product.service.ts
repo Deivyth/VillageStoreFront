@@ -16,8 +16,16 @@ export class ProductService {
     return this.http.get<IProduct[]>(urlEndPoint)
   }
 
+  getUserProducts(page: number, size: number, sort: string, filters?: string): Observable<IProduct[]> {
+    let urlEndPoint: string = "http://localhost:8080/api/products?page=" + page + "&size=" + size + "&sort=" + sort;
+    if(filters) {
+      urlEndPoint = urlEndPoint + "&filter=" +filters;
+    }
+    return this.http.get<IProduct[]>(urlEndPoint);
+  }
+
   getProduct(idProduct: number): Observable<IProduct>{
-    const urlEndPoint: string = "http://localhost:8080/api/products/"+idProduct;
+    const urlEndPoint: string = "http://localhost:8080/api/products/"+ idProduct;
     return this.http.get<IProduct>(urlEndPoint);
   }
 
@@ -28,6 +36,11 @@ export class ProductService {
   updateItem(product: Product) {
     const urlEndPoint: string = "http://localhost:8080/api/products/";
     return this.http.patch<Product>(urlEndPoint, product);
+  }
+
+  public deleteItem(productIdToDelete: number): Observable<any> {
+    let urlEndpoint: string = "http://localhost:8080/api/products/" + productIdToDelete;
+    return this.http.delete<any>(urlEndpoint);  
   }
 
 }

@@ -38,10 +38,10 @@ export class ProductFormComponent implements OnInit {
 
     this.buildForm();
 
-    const entryParam: string = this.route.snapshot.paramMap.get("itemId") ?? "new";
+    const entryParam: string = this.route.snapshot.paramMap.get("idProduct") ?? "new";
 
     if(entryParam !== "new"){
-      this.productId = + this.route.snapshot.paramMap.get("itemId")!;
+      this.productId = + this.route.snapshot.paramMap.get("idProduct")!;
       this.mode = "UPDATE";
       this.getProductById(this.productId!);
     }else{

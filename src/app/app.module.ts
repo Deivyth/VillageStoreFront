@@ -23,12 +23,13 @@ import { ChangeComponent } from './user/menu/change-menu/change.component';
 import { ChangeEmailComponent } from './user/menu/change-email/change-email.component';
 import { ChangePasswordComponent } from './user/menu/change-password/change-password.component';
 import { CartListComponent } from './shopping-cart/cart-list/cart-list.component';
+import { CartCardComponent } from './shopping-cart/cart-card/cart-card.component';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
-
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { ProductsComponent } from './user/products/products.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import { MessageModule } from 'primeng/message';
     ChangeNameComponent,
     ChangeEmailComponent,
     ChangePasswordComponent,
-    CartListComponent
+    CartListComponent,
+    CartCardComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

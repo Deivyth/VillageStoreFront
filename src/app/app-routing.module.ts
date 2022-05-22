@@ -9,19 +9,22 @@ import { ChangeEmailComponent } from './user/menu/change-email/change-email.comp
 import { ChangeComponent } from './user/menu/change-menu/change.component';
 import { ChangeNameComponent } from './user/menu/change-name/change-name.component';
 import { ChangePasswordComponent } from './user/menu/change-password/change-password.component';
+import { ProductsComponent } from './user/products/products.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 
 const routes: Routes = [
   { path : "", component: ProductListComponent},
   { path : "productos/:idProduct", component: ProductDetailsComponent },
   { path : "producto/crear", component: ProductFormComponent },
+  { path : "producto/:idProduct/modificar", component: ProductFormComponent },
   { path : "entrar", component: LogInComponent },
   { path : "registrar", component: SignUpComponent },
-  { path : "usuario/carrito", component: CartListComponent},
+  { path : "usuario/carrito", component: CartListComponent },
+  { path : "usuario/:userId/productos", component: ProductsComponent },
   { path : "usuario/cambios", component: ChangeComponent },
-  { path : "usuario/cambios/nombre", component: ChangeNameComponent},
-  { path : "usuario/cambios/email", component: ChangeEmailComponent},
-  { path : "usuario/cambios/contraseña", component: ChangePasswordComponent}
+  { path : "usuario/cambios/nombre", component: ChangeNameComponent },
+  { path : "usuario/cambios/email", component: ChangeEmailComponent },
+  { path : "usuario/cambios/contraseña", component: ChangePasswordComponent }
 
 ];
 

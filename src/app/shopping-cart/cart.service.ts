@@ -15,14 +15,19 @@ export class CartService {
     private http: HttpClient
   ) { }
 
+  getCartProducts(userId: number) {
+    const urlEndPoint: string = "http://localhost:8080/api/users/"+ userId +"/cart";
+    return this.http.get<ICart[]>(urlEndPoint);
+  }
+
   addProductToCart(userId: number, cart: Cart) {
     const urlEndPoint: string = "http://localhost:8080/api/users/"+ userId +"/cart";
     return this.http.put<Cart>(urlEndPoint, cart);
   }
 
-  getCartProducts(userId: number) {
+  updateProductToCart(userId: number, cart: Cart) {
     const urlEndPoint: string = "http://localhost:8080/api/users/"+ userId +"/cart";
-    return this.http.get<ICart[]>(urlEndPoint);
+    return this.http.patch<Cart>(urlEndPoint, cart);
   }
 
 }

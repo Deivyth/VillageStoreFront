@@ -1,0 +1,25 @@
+<div class="col-3 image">
+    <img *ngIf="item.getProductImage()" [src]="'data:image/png;base64,'+item.getProductImage()" 
+    [routerLink]="['/productos', item.getProductId()]" alt="{{ item.getUserId() }}">
+    <img *ngIf="item.getProductImage() == undefined" src="./assets/box.png" alt="{{ item.getUserId() }}">
+</div>
+
+<div class="col-9">
+    <div class="info">
+        <p>{{item.getProductName()}}</p>
+        <p>Precio:{{item.getProductPrice()! | currencyEUR}}</p>
+        <p>Precio total:{{getFullPriceOfTheProduct()! | currencyEUR}}</p>
+    </div>
+    <div class="control">
+        <form *ngIf="cartForm" [formGroup]="cartForm">
+            <div>
+                <label>Cantidad: </label>
+                <input type="number" formControlName="quantity" id="quantity">
+            </div>
+        </form>
+        <div>
+            <i class="bi bi-trash"></i>
+        </div>
+    </div>
+</div>
+<hr class="col-12">

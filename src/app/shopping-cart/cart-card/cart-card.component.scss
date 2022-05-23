@@ -1,0 +1,49 @@
+
+div.image{
+
+    display: flex;
+    justify-content: center;
+    height: 125px;
+
+    img{
+        padding-bottom: 14px;
+        height: 100%;
+    }
+}
+
+div.info{
+    display: flex;
+    justify-content: space-between;
+}
+
+div.control{
+    display: flex;
+    justify-content: space-between;
+
+    form{
+
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+
+        label{
+            font-size: 0.75em;
+        }
+    }
+
+    & div:nth-child(2) {
+        display: flex;
+        align-items: center;
+    }
+
+    i{
+        color: #f00;
+    }
+}
+
+div.summary{
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 4px;
+}

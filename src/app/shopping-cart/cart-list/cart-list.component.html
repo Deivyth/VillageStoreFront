@@ -1,16 +1,7 @@
 <main class="container">
     <section class="row">
         <article class="col-md-7 col-12">
-            <div *ngFor="let item of cart" class="row" [routerLink]="['/productos', item.getProductId()]">
-                <img [src]="'data:image/png;base64,'+item.getProductImage()" alt="{{item.getProductName()}}" class="col-md-4">
-                <div class="col-8">
-                    <div class="info">
-                        <p>{{item.getProductName()}}</p>
-                        <p>{{item.getProductPrice()! | currencyEUR}}</p>
-                    </div>
-                </div>
-                <hr>
-            </div>
+             <app-cart-card *ngFor="let item of cart" [item] = "item" class="row"></app-cart-card>
         </article>
         <article class="col-md-4 col-12 offset-md-1">
             <div class="row summary">

@@ -19,6 +19,7 @@ import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 export class ProductFormComponent implements OnInit {
 
   mode: "NEW" | "UPDATE" = "NEW";
+  textButton: "Crear" | "Modificar" = "Crear";
   productId?: number;
   product?: Product;
   selectedCategory?: Category;
@@ -43,9 +44,11 @@ export class ProductFormComponent implements OnInit {
     if(entryParam !== "new"){
       this.productId = + this.route.snapshot.paramMap.get("idProduct")!;
       this.mode = "UPDATE";
+      this.textButton = "Modificar";
       this.getProductById(this.productId!);
     }else{
       this.mode = "NEW";
+      this.textButton = "Crear";
       this.initializeProduct();
     }
   }
@@ -70,7 +73,6 @@ export class ProductFormComponent implements OnInit {
       user: new User(product.getSupplierId()!, product.getSupplierName()!),
       category: new Category(product.getCategoryId()!,product.getCategoryName()!)
     })
-    console.log(product.getCategoryId());
   }
 
   private createFromForm() {
@@ -152,7 +154,9 @@ export class ProductFormComponent implements OnInit {
         this.toast("success", "Operacion realizada con exito", "Producto creado");
         console.log(productInsert);
       },
-      error: (error) => {}
+      error: (err) => {
+        this.toast("error", "Fallo con el servidor", err);
+      }
     })
   }
 
@@ -162,7 +166,9 @@ export class ProductFormComponent implements OnInit {
         this.toast("success", "Operacion realizada con exito", "Producto actualizado");
         console.log(productUpdate);
       },
-      error: (error) => {}
+      error: (err) => {
+        this.toast("error", "Fallo con el servidor", err);
+      }
     })
   }
 

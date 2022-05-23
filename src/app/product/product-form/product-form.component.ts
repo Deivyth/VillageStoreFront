@@ -66,6 +66,7 @@ export class ProductFormComponent implements OnInit {
       name: product.getName(),
       price: product.getPrice(),
       description: product.getDescription(),
+      image: product.getImage(),
       user: new User(product.getSupplierId()!, product.getSupplierName()!),
       category: new Category(product.getCategoryId()!,product.getCategoryName()!)
     })
@@ -79,10 +80,10 @@ export class ProductFormComponent implements OnInit {
       id: this.itemForm?.get(['id'])!.value,
       name: this.itemForm?.get(['name'])!.value,
       price: this.itemForm?.get(['price'])!.value,
+      description: this.itemForm?.get(['description'])!.value,
+      image: this.product?.getImage(),
       supplierId: 1,
       categoryId: this.itemForm?.get(['category'])!.value.id,
-      description: this.itemForm?.get(['description'])!.value,
-      image: this.product!.getImage(),
       categoryName: this.itemForm?.get(['category'])!.value.name
     }
   }
@@ -114,11 +115,22 @@ export class ProductFormComponent implements OnInit {
   private getProductById(itemId: number) {
     this.productService.getProduct(itemId).subscribe({
       next: (Iproduct) => {
-        this.product = new Product(Iproduct.id, Iproduct.name, Iproduct.price, Iproduct.supplierId, Iproduct.categoryId, Iproduct.description, Iproduct.image);
+        this.product = new Product(
+          Iproduct.id, 
+          Iproduct.name, 
+          Iproduct.price, 
+          Iproduct.supplierId,
+          Iproduct.categoryId, 
+          Iproduct.supplierName,
+          Iproduct.categoryName,
+          Iproduct.description, 
+          Iproduct.image);
         this.updateForm(this.product);
         this.selectedCategory = new Category(Iproduct.categoryId!, Iproduct.categoryName!)
       },
-      error: (err) => {this.toast("error", "Fallo con el servidor", err);}
+      error: (err) => {
+        this.toast("error", "Fallo con el servidor", err);
+      }
     });
   }
 

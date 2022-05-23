@@ -19,6 +19,7 @@ $primary: #32CD30;
         }
     }
     input[type=text].p-autocomplete-input{
+        border: 1px solid #797979;
         padding: 8px;
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
@@ -53,7 +54,7 @@ $primary: #32CD30;
 
 .item-form{
 
-    div{
+    div.form-group{
         position: relative;
         margin: 10px 0px;
         display: flex;
@@ -110,4 +111,4 @@ $primary: #32CD30;
 }
 
 @import "bootstrap/scss/bootstrap.scss";
-@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/themes/bootstrap4-light-blue/theme.css";

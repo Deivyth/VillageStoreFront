@@ -53,11 +53,11 @@ import { ProductsComponent } from './user/products/products.component';
     ProductsComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule, 
     ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     AutoCompleteModule,
     ToastModule,
     MessageModule,

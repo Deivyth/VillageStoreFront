@@ -1,7 +1,9 @@
-<article class="card" *ngIf="product" [routerLink]="['productos', product.getId()]">
-    
-    <img *ngIf="product.getImage()"  [src]="'data:image/png;base64,'+product.getImage()" class="card-img-top" alt="{{ product.getName() }}">
-    <img *ngIf="product.getImage() == undefined" src="./assets/box.png" class="card-img-top" alt="{{ product.getName() }}">
+<article class="card" *ngIf="product" [routerLink]="['/productos', product.getId()]">
+    <div class="card-img-top">
+      <img *ngIf="product.getImage()"  [src]="'data:image/png;base64,'+product.getImage()" alt="{{ product.getName() }}">
+      <img *ngIf="product.getImage() == undefined" src="./assets/box.png" alt="{{ product.getName() }}">
+    </div>
+
     <div class="card-body">
       <h5 class="card-title">{{product.getName()}}</h5>
       <p class="card-text">{{product.getDescription()}}</p>

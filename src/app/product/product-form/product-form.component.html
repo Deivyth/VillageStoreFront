@@ -12,9 +12,9 @@
             </div>
 
             <!-- CATEGORY -->
-            <div class="form-group">
+            <div>
                 <label for="categoryId">Categoria</label>
-                <p-autoComplete styleClass="categories" formControlName ="category" name="category" [suggestions]="categories" 
+                <p-autoComplete formControlName ="category" name="category" [suggestions]="categories" 
                 (completeMethod)="getCategories($event)" field="name" 
                 (onSelect)="categorySelected()" (onClear)="categoryUnselected()" 
                 [required]="true" [forceSelection]="true" [dropdown]="true"></p-autoComplete>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Category } from 'src/app/entities/category.model';
+import { Category } from 'src/app/entities/category/category.model';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import { CategoryService } from 'src/app/entities/category/category.service';

@@ -6,8 +6,7 @@ import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import { CategoryService } from 'src/app/entities/category/category.service';
 import { MessageService } from 'primeng/api';
-import { User } from 'src/app/user/user.mode';
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
+import { User } from '../../user/user.mode';
 
 
 @Component({

@@ -1,8 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IProduct } from '../product/product.interface';
-import { Product } from '../product/product.model';
-import { ProductService } from '../product/product.service';
 import { ICart } from './cart.interface';
 import { Cart } from './cart.model';
 

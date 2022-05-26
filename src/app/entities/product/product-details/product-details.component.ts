@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cart } from 'src/app/shopping-cart/cart.model';
-import { CartService } from 'src/app/shopping-cart/cart.service';
+import { Cart } from '../../cart/cart.model';
+import { CartService } from '../../cart/cart.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 

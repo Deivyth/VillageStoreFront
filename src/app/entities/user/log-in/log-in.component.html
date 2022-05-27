@@ -1,17 +1,20 @@
 <main class="container mt-2">
     <section class="row">
-        <form action="" class="col-lg-5 col-md-6 col-sm-8 col-10">
-            <div>
+        <form class="col-lg-5 col-md-6 col-sm-8 col-10" *ngIf="loginForm" [formGroup]="loginForm" novalidate>
+            
+            <div class="form-group">
                 <label for="email">Email</label>
                 <i class="bi bi-at"></i>
-                <input type="email" id="email" placeholder="Email">
+                <input type="email" id="email" placeholder="Email" formControlName="email">
             </div>
-            <div>
+            
+            <div class="form-group">
                 <label for="">Contraseña</label>
                 <i class="bi bi-lock-fill"></i>
-                <input type="password" placeholder="Contraseña">
+                <input type="password" placeholder="Contraseña" formControlName="password">
             </div>
-            <input type="button" value="Entrar">
+            
+            <input type="button" value="Entrar" (click)="onLogin()" [disabled]="loginForm.invalid" class="btn btn-primary">
         </form>
     </section>
 </main>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from 'src/app/entities/cart/cart.model';
 import { CartService } from 'src/app/entities/cart/cart.service';
+import { TokenService } from 'src/app/entities/user/service/token.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +11,21 @@ import { CartService } from 'src/app/entities/cart/cart.service';
 export class NavbarComponent implements OnInit {
 
   cart: Cart[] = [];
-  usuario: boolean = true;
+  isLogged: boolean = false;
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit(): void {
     this.getProducts();
+
+    if(this.tokenService.getToken()) {
+      this.tokenService.isLogged = true;
+    }else{
+      this.tokenService.isLogged = false
+    }
   }
 
   getProducts(): void{
@@ -30,5 +40,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  getIsloged() {
+    return this.tokenService.isLogged;
+  }
 
 }

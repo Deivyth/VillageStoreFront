@@ -12,7 +12,7 @@
           aria-label="Search"
         />
       </form>
-      <div class="col-lg-auto col-12 m-2 buttons" *ngIf="usuario == false">
+      <div class="col-lg-auto col-12 m-2 buttons" *ngIf="getIsloged() == false">
         <a type="button" class="btn btn-outline-light me-2" [routerLink]="['entrar']">
           Entrar
         </a>
@@ -20,7 +20,7 @@
           Registrarse
         </a>
       </div>
-      <div class="col-lg-2 col-12 d-flex justify-content-around user" *ngIf="usuario == true">
+      <div class="col-lg-2 col-12 d-flex justify-content-around user" *ngIf="getIsloged() == true">
         <i class="bi bi-cart" [routerLink]="['usuario/carrito']">
           <span>{{ cart.length }}</span>
         </i>

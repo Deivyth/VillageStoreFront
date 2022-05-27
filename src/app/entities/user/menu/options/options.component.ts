@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from '../../service/token.service';
 
 @Component({
   selector: 'app-user-options',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private tokenService : TokenService,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout(): void{
+    this.tokenService.logOut();
+    window.location.reload();
   }
 
 }

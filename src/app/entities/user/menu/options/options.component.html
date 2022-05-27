@@ -7,7 +7,9 @@
                 <li [routerLink]="['usuario/cambios']">Datos</li>
                 <li>Pedidos</li>
                 <hr>
-                <li>Cerrar sesion</li>
+                <li (click)="logout()" >
+                     Cerrar sesion
+                </li>
             </ul>
         </article>
         <article>

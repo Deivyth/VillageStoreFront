@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 const TOKEN_KEY = 'AuthToken';
 const EMAIL_KEY = 'AuthEmail';
@@ -9,9 +10,13 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 })
 export class TokenService {
 
+
   roles: string[] = [];
+  isLogged: boolean = false;
 
   constructor() { }
+
+  
 
   public setToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -49,6 +54,7 @@ export class TokenService {
 
   public logOut(): void {
     window.sessionStorage.clear();
+    this.isLogged = false;
   }
 
 }

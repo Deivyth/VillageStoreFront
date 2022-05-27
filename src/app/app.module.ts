@@ -16,6 +16,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+
 import { ProductListComponent } from './entities/product/product-list/product-list.component';
 import { ProductCardComponent } from './entities/product/product-card/product-card.component';
 import { ProductDetailsComponent } from './entities/product/product-details/product-details.component';
@@ -63,13 +64,7 @@ import { ProductsComponent } from './entities/user/products/products.component';
     MessageModule,
     MessagesModule
   ],
-  providers: [
-    { 
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestIntercept,
-      multi: true 
-    }
-  ],
+  providers: [HttpRequestIntercept],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

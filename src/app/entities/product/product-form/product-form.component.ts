@@ -6,7 +6,7 @@ import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import { CategoryService } from 'src/app/entities/category/category.service';
 import { MessageService } from 'primeng/api';
-import { User } from '../../user/user.mode';
+import { User } from '../../user/model/user.model';
 
 
 @Component({
@@ -105,7 +105,6 @@ export class ProductFormComponent implements OnInit {
   categorySelected(): void {
     this.product!.setCategoryId(this.selectedCategory?.id);
     this.product!.setCategoryName(this.selectedCategory?.name);
-    console.log(this.selectedCategory?.name);
   }
 
   categoryUnselected(): void {
@@ -137,7 +136,6 @@ export class ProductFormComponent implements OnInit {
 
   saveProduct(){
     const itemToSave: any = this.createFromForm();
-    console.log(itemToSave);
     if (this.mode === "NEW") {
       this.insertProduct(itemToSave);
     }
@@ -151,7 +149,6 @@ export class ProductFormComponent implements OnInit {
     this.productService.insertItem(product).subscribe({
       next: (productInsert) => {
         this.toast("success", "Operacion realizada con exito", "Producto creado");
-        console.log(productInsert);
       },
       error: (err) => {
         this.toast("error", "Fallo con el servidor", err);
@@ -163,7 +160,6 @@ export class ProductFormComponent implements OnInit {
     this.productService.updateItem(product).subscribe({
       next: (productUpdate) => {
         this.toast("success", "Operacion realizada con exito", "Producto actualizado");
-        console.log(productUpdate);
       },
       error: (err) => {
         this.toast("error", "Fallo con el servidor", err);

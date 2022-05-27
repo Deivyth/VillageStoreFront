@@ -11,21 +11,24 @@ import { ChangeNameComponent } from './entities/user/menu/change-name/change-nam
 import { ChangePasswordComponent } from './entities/user/menu/change-password/change-password.component';
 import { ProductsComponent } from './entities/user/products/products.component';
 import { SignUpComponent } from './entities/user/sign-up/sign-up.component';
+import { ProdGuardService as guard} from './config/guards/prod-guard.service';
 
 
 const routes: Routes = [
+
   { path : "", component: ProductListComponent},
-  { path : "productos/:idProduct", component: ProductDetailsComponent },
-  { path : "producto/crear", component: ProductFormComponent },
-  { path : "producto/:idProduct/modificar", component: ProductFormComponent },
   { path : "entrar", component: LogInComponent },
   { path : "registrar", component: SignUpComponent },
+  { path : "productos/:idProduct", component: ProductDetailsComponent },
+  { path : "producto/crear", component: ProductFormComponent, canActivate: [guard], data: { espectedRol: ["admin","user"] } },
+  { path : "producto/:idProduct/modificar", component: ProductFormComponent , canActivate: [guard], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/carrito", component: CartListComponent },
   { path : "usuario/:userId/productos", component: ProductsComponent },
   { path : "usuario/cambios", component: ChangeComponent },
   { path : "usuario/cambios/nombre", component: ChangeNameComponent },
   { path : "usuario/cambios/email", component: ChangeEmailComponent },
-  { path : "usuario/cambios/contraseña", component: ChangePasswordComponent }
+  { path : "usuario/cambios/contraseña", component: ChangePasswordComponent },
+  { path : "*", redirectTo: '', pathMatch: 'full' }
 
 ];
 

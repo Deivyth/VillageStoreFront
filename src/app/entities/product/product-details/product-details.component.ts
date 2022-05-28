@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from '../../cart/cart.model';
 import { CartService } from '../../cart/cart.service';
+import { TokenService } from '../../user/service/token.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 
@@ -13,6 +14,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
+  private userId: number = Number(this.tokenService.getId());
   idProduct: number | any;
   product?: Product;
   cart? : Cart;
@@ -24,6 +26,7 @@ export class ProductDetailsComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private cartService: CartService,
+    private tokenService: TokenService,
     private formBuilder: FormBuilder
   ) { }
 
@@ -70,26 +73,33 @@ export class ProductDetailsComponent implements OnInit {
 
   //To Do
   buy(){
-    const itemToSave: any = this.createFromForm();
-    console.log(itemToSave);
-    this.cartService.addProductToCart(1,itemToSave).subscribe({
-      next: ( cart ) => {},
-      error: ( err ) => {}
-
-    });
-    this.router.navigate(['usuario/carrito']);
+    if(this.tokenService.getToken()) {
+      const itemToSave: any = this.createFromForm();
+      this.cartService.addProductToCart(this.userId,itemToSave).subscribe({
+        next: ( cart ) => {},
+        error: ( err ) => {}
+  
+      });
+      this.router.navigate(['usuario/carrito']);
+    }else{
+      this.router.navigate(['entrar']);
+    }
+    
   }
 
   addToCart(){
-    const itemToSave: any = this.createFromForm();
-    console.log(itemToSave);
-    this.cartService.addProductToCart(1,itemToSave!).subscribe({
-      next: ( cart ) => {
-        
-      },
-      error: ( err ) => {}
-
-    });
+    if(this.tokenService.getToken()) {
+      const itemToSave: any = this.createFromForm(); 
+      this.cartService.addProductToCart(this.userId,itemToSave!).subscribe({
+        next: ( cart ) => {
+          
+        },
+        error: ( err ) => {}
+  
+      });
+    }else{
+      this.router.navigate(['entrar']);
+    }
   }
 
 }

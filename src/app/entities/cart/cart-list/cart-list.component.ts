@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TokenService } from '../../user/service/token.service';
 import { Cart } from '../cart.model';
 import { CartService } from '../cart.service';
 
@@ -17,6 +18,7 @@ export class CartListComponent implements OnInit {
   
   constructor(
     private cartService : CartService,
+    private tokenService: TokenService,
     private formBuilder : FormBuilder
   ) { }
 
@@ -25,7 +27,7 @@ export class CartListComponent implements OnInit {
   }
 
   getProducts(): void{
-    this.cartService.getCartProducts(1).subscribe({
+    this.cartService.getCartProducts(Number(this.tokenService.getId())).subscribe({
       next: (cart) =>{ 
         cart.forEach((item) => {
           let cart: Cart = new Cart(item.userId,item.productId,item.productName,item.productPrice,item.productImage,item.quantity);

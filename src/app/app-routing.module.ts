@@ -22,7 +22,7 @@ const routes: Routes = [
   { path : "productos/:idProduct", component: ProductDetailsComponent },
   { path : "producto/crear", component: ProductFormComponent, canActivate: [guard], data: { espectedRol: ["admin","user"] } },
   { path : "producto/:idProduct/modificar", component: ProductFormComponent , canActivate: [guard], data: { espectedRol: ["admin","user"] }},
-  { path : "usuario/carrito", component: CartListComponent },
+  { path : "usuario/carrito", component: CartListComponent, canActivate: [guard], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/:userId/productos", component: ProductsComponent },
   { path : "usuario/cambios", component: ChangeComponent },
   { path : "usuario/cambios/nombre", component: ChangeNameComponent },

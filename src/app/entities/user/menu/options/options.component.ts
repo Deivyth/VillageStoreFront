@@ -19,9 +19,10 @@ export class OptionsComponent implements OnInit {
 
   logout(): void{
     this.tokenService.logOut();
+    this.route.navigate(['/']);
   }
 
   getUserId(): number {
-    return Number(this.tokenService.getId()!);
+    return  Number(this.tokenService.getId()!);
   }
 }

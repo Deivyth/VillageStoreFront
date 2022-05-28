@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+const ID_KEY = 'AuthId';
 const TOKEN_KEY = 'AuthToken';
 const EMAIL_KEY = 'AuthEmail';
 const AUTHORITIES_KEY = 'AuthAuthorities';
@@ -16,7 +17,14 @@ export class TokenService {
 
   constructor() { }
 
-  
+  public setId(id : string): void {
+    window.sessionStorage.removeItem(ID_KEY);
+    window.sessionStorage.setItem(ID_KEY, id);
+  }
+
+  public getId(): string | undefined{
+    return sessionStorage.getItem(ID_KEY) ?? undefined;
+  }
 
   public setToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);

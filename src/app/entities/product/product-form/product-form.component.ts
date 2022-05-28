@@ -7,6 +7,8 @@ import { ProductService } from '../product.service';
 import { CategoryService } from 'src/app/entities/category/category.service';
 import { MessageService } from 'primeng/api';
 import { User } from '../../user/model/user.model';
+import { Token } from '@angular/compiler';
+import { TokenService } from '../../user/service/token.service';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
+    private tokenService: TokenService,
     private formBuilder: FormBuilder,
     private messageService: MessageService
   ) { }
@@ -83,7 +86,7 @@ export class ProductFormComponent implements OnInit {
       price: this.itemForm?.get(['price'])!.value,
       description: this.itemForm?.get(['description'])!.value,
       image: this.product?.getImage(),
-      supplierId: 1,
+      supplierId: Number(this.tokenService.getId()),
       categoryId: this.itemForm?.get(['category'])!.value.id,
       categoryName: this.itemForm?.get(['category'])!.value.name
     }

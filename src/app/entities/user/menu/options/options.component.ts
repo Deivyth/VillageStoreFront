@@ -19,7 +19,9 @@ export class OptionsComponent implements OnInit {
 
   logout(): void{
     this.tokenService.logOut();
-    window.location.reload();
   }
 
+  getUserId(): number {
+    return Number(this.tokenService.getId()!);
+  }
 }

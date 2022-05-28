@@ -45,6 +45,7 @@ export class LogInComponent implements OnInit {
         this.tokenService.isLogged = true;
         this.isLoginFail = false;
 
+        this.tokenService.setId( data.id.toString() );
         this.tokenService.setToken(data.token);
         this.tokenService.setEmail(data.email);
         this.tokenService.setAuthorities(data.authorities);

@@ -1,9 +1,9 @@
 <main class="container mt-2" *ngIf="product">
     <section class="row">
-        <article class="col-md-5 col-12">
-            <img  *ngIf="product.getImage()" [src]="'data:image/jpeg;base64,'+ product!.getImage()">
-            <img  *ngIf="product.getImage() == undefined" src="./assets/box.png">
-        </article>
+        <div class="col-md-5 col-12">
+            <img *ngIf="product.getImage()" [src]="'data:image/jpeg;base64,'+ product!.getImage()">
+            <img *ngIf="product.getImage() == undefined" src="./assets/box.png">
+        </div>
         <article class="col-md-4 col-6">
             <div class="info">
                 <h4>{{product.getName()}}</h4>
@@ -14,10 +14,10 @@
             <div class="row control">
                 <label for="">Precio:</label>
                 <h5>{{product.getPrice() | currencyEUR}}</h5>
-                <form class="item-form" *ngIf="cartForm" [formGroup]="cartForm" novalidate autocomplete="off">
-                    <div>
+                <form *ngIf="cartForm" [formGroup]="cartForm" novalidate autocomplete="off">
+                    <div class="form-group">
                         <label>Cantidad: </label>
-                        <input type="number" formControlName="quantity">
+                        <input type="number" formControlName="quantity" min="0">
 
                         <div *ngIf="(cartForm.get('quantity')!.dirty && cartForm.get('quantity')!.errors)">
                             <small class="form-text text-danger" *ngIf="cartForm.get('quantity')!.errors!['required']">

@@ -1,18 +1,19 @@
 main{
     section{
-        article{
+
+        div{
+            
             img{
-                height: 100%;
+               width: 100%;
             }
+        }
+
+        article{
 
             div.control{
                 padding: 10px 0px;
                 border: 1px solid #000;
                 border-radius: 4px;
-
-                label{
-                    font-size: 0.7em;
-                }
             }
         }
     }

@@ -24,11 +24,11 @@ const routes: Routes = [
   { path : "producto/crear", component: ProductFormComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
   { path : "producto/:idProduct/modificar", component: ProductFormComponent , canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/carrito", component: CartListComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
-  { path : "usuario/productos", component: ProductsComponent },
-  { path : "usuario/cambios", component: ChangeComponent },
-  { path : "usuario/cambios/nombre", component: ChangeNameComponent },
-  { path : "usuario/cambios/email", component: ChangeEmailComponent },
-  { path : "usuario/cambios/contraseña", component: ChangePasswordComponent },
+  { path : "usuario/productos", component: ProductsComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
+  { path : "usuario/cambios", component: ChangeComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
+  { path : "usuario/cambios/nombre", component: ChangeNameComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
+  { path : "usuario/cambios/email", component: ChangeEmailComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
+  { path : "usuario/cambios/contraseña", component: ChangePasswordComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
   { path : "*", redirectTo: '', pathMatch: 'full' }
 
 ];

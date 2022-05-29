@@ -19,7 +19,7 @@ export class HttpRequestIntercept implements HttpInterceptor{
         if(token !=  null) {
             intReq = req.clone({ 
                 setHeaders: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `secret ${ token }`
                 }
             });
         }

@@ -58,6 +58,32 @@ export class TokenService {
     }
   }
 
+  public getEmail(): string | null{
+    if(!this.isLogged()) {
+      return null;
+    } else { 
+      const token = this.getToken();
+      const payload = token?.split('.')[1];
+      const payloadDecoded = atob(payload!);
+      const values = JSON.parse(payloadDecoded);
+      const email = values.sub;
+      return email;
+    }
+  }
+
+  public getName(): string | null{
+    if(!this.isLogged()) {
+      return null;
+    } else { 
+      const token = this.getToken();
+      const payload = token?.split('.')[1];
+      const payloadDecoded = atob(payload!);
+      const values = JSON.parse(payloadDecoded);
+      const email = values.name;
+      return email;
+    }
+  }
+
   public logOut(): void {
     window.localStorage.clear();
   }

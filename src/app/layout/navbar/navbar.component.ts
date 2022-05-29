@@ -11,22 +11,13 @@ import { TokenService } from 'src/app/entities/user/service/token.service';
 export class NavbarComponent implements OnInit {
 
   cart: Cart[] = [];
-  isLogged: boolean = false;
 
   constructor(
     private cartService: CartService,
     private tokenService: TokenService
   ) { }
 
-  ngOnInit(): void {
-    this.getProducts();
-
-    if(this.tokenService.getToken()) {
-      this.tokenService.isLogged = true;
-    }else{
-      this.tokenService.isLogged = false
-    }
-  }
+  ngOnInit(): void { }
 
   getProducts(): void{
     this.cartService.getCartProducts(1).subscribe({
@@ -40,8 +31,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  getIsloged() {
-    return this.tokenService.isLogged;
+  isLogged(): boolean {
+    return this.tokenService.isLogged();
   }
 
 }

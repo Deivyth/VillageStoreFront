@@ -12,11 +12,9 @@ import { TokenService } from '../service/token.service';
 })
 export class LogInComponent implements OnInit {
 
-  isLoginFail = false;
   loginUser?: LogInUser;
-  email: string =  "";
+  email: string = "";
   password: string = "";
-  roles: string[] = [];
 
   loginForm?: FormGroup;
 
@@ -31,31 +29,16 @@ export class LogInComponent implements OnInit {
 
     this.buildForm();
 
-    if(this.tokenService.getToken()) {
-      this.tokenService.isLogged = true;
-      this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
-    }
   }
 
   onLogin(): void {
     const loginUser: any = this.createFromForm();
     this.authService.logIn(loginUser).subscribe({
       next: (data) => {
-        this.tokenService.isLogged = true;
-        this.isLoginFail = false;
-
-        this.tokenService.setId( data.id.toString() );
         this.tokenService.setToken(data.token);
-        this.tokenService.setEmail(data.email);
-        this.tokenService.setAuthorities(data.authorities);
-        this.roles = data.authorities;
-        this.router.onSameUrlNavigation = 'reload';
         this.router.navigate(['/']);
-      } ,
+      },
       error: (err) => {
-        this.tokenService.isLogged = false;
-        this.isLoginFail = true;
         console.log(err);
       }
     })
@@ -63,7 +46,7 @@ export class LogInComponent implements OnInit {
 
   private buildForm(): void {
     this.loginForm = this.formBuilder.group({
-      email: ['', {require: true}],
+      email: ['', { require: true }],
       password: ['', { require: true }]
     })
   }

@@ -11,18 +11,19 @@ import { ChangeNameComponent } from './entities/user/menu/change-name/change-nam
 import { ChangePasswordComponent } from './entities/user/menu/change-password/change-password.component';
 import { ProductsComponent } from './entities/user/products/products.component';
 import { SignUpComponent } from './entities/user/sign-up/sign-up.component';
-import { ProdGuardService as guard} from './config/guards/prod-guard.service';
+import { ProdGuardService } from './config/guards/prod-guard.service';
+import { LoginGuard } from './config/guards/login.guard';
 
 
 const routes: Routes = [
 
   { path : "", component: ProductListComponent},
-  { path : "entrar", component: LogInComponent },
-  { path : "registrar", component: SignUpComponent },
+  { path : "entrar", component: LogInComponent, canActivate: [LoginGuard] },
+  { path : "registrar", component: SignUpComponent, canActivate: [LoginGuard] },
   { path : "productos/:idProduct", component: ProductDetailsComponent },
-  { path : "producto/crear", component: ProductFormComponent, canActivate: [guard], data: { espectedRol: ["admin","user"] } },
-  { path : "producto/:idProduct/modificar", component: ProductFormComponent , canActivate: [guard], data: { espectedRol: ["admin","user"] }},
-  { path : "usuario/carrito", component: CartListComponent, canActivate: [guard], data: { espectedRol: ["admin","user"] }},
+  { path : "producto/crear", component: ProductFormComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
+  { path : "producto/:idProduct/modificar", component: ProductFormComponent , canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
+  { path : "usuario/carrito", component: CartListComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/:userId/productos", component: ProductsComponent },
   { path : "usuario/cambios", component: ChangeComponent },
   { path : "usuario/cambios/nombre", component: ChangeNameComponent },

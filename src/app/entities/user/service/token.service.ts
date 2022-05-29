@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const ID_KEY = 'AuthId';
 const TOKEN_KEY = 'AuthToken';
-const EMAIL_KEY = 'AuthEmail';
-const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
@@ -13,56 +10,55 @@ export class TokenService {
 
 
   roles: string[] = [];
-  isLogged: boolean = false;
 
   constructor() { }
 
-  public setId(id : string): void {
-    window.sessionStorage.removeItem(ID_KEY);
-    window.sessionStorage.setItem(ID_KEY, id);
-  }
-
-  public getId(): string | undefined{
-    return sessionStorage.getItem(ID_KEY) ?? undefined;
-  }
-
   public setToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, token);
   }
 
   public getToken(): string | undefined{
-    return sessionStorage.getItem(TOKEN_KEY) ?? undefined;
+    return localStorage.getItem(TOKEN_KEY) ?? undefined;
   }
 
-  public setEmail(email: string): void {
-    window.sessionStorage.removeItem(EMAIL_KEY);
-    window.sessionStorage.setItem(EMAIL_KEY, email);
-  }
-
-  public getEmail(): string | undefined{
-    return sessionStorage.getItem(EMAIL_KEY) ?? undefined;
-  }
-
-  public setAuthorities(authorities: string[]): void {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-  }
-
-  public getAuthorities(): string[] {
-    this.roles = [];
-    if(sessionStorage.getItem(AUTHORITIES_KEY)) {
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach( (item : any) => {
-        this.roles.push(item.authority);
-      });
+  public isLogged(): boolean {
+    if(this.getToken()) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    return this.roles;
+  public isAdmin(): boolean {
+    if(this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token?.split('.')[1];
+    const payloadDecoded = atob(payload!);
+    const values = JSON.parse(payloadDecoded);
+    const id = values.roles;
+    if(this.roles.indexOf('ROLE_ADMIN') < 0){
+      return false;
+    }
+    return true;
+  }
+
+  public getId(): number | null{
+    if(this.isLogged()) {
+      return null;
+    }
+    const token = this.getToken();
+    const payload = token?.split('.')[1];
+    const payloadDecoded = atob(payload!);
+    const values = JSON.parse(payloadDecoded);
+    const id = values.id;
+    return id;
   }
 
   public logOut(): void {
-    window.sessionStorage.clear();
-    this.isLogged = false;
+    window.localStorage.clear();
   }
 
 }

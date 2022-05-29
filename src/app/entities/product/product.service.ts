@@ -3,21 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IProduct } from './product.interface';
 import { Product } from './product.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
+  productURL = environment.productoURL;
+
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]>{
-    const urlEndPoint: string = "http://localhost:8080/api/products";
-    return this.http.get<IProduct[]>(urlEndPoint)
+    return this.http.get<IProduct[]>(this.productURL)
   }
 
   getUserProducts(page: number, size: number, sort: string, filters?: string): Observable<IProduct[]> {
-    let urlEndPoint: string = "http://localhost:8080/api/products?page=" + page + "&size=" + size + "&sort=" + sort;
+    let urlEndPoint: string = this.productURL+"?page=" + page + "&size=" + size + "&sort=" + sort;
     if(filters) {
       urlEndPoint = urlEndPoint + "&filter=" +filters;
     }
@@ -25,22 +27,19 @@ export class ProductService {
   }
 
   getProduct(idProduct: number): Observable<IProduct>{
-    const urlEndPoint: string = "http://localhost:8080/api/products/"+ idProduct;
-    return this.http.get<IProduct>(urlEndPoint);
+    return this.http.get<IProduct>(this.productURL+"/"+ idProduct);
   }
 
   insertItem(product: Product) {
-    const urlEndPoint: string = "http://localhost:8080/api/products/";
-    return this.http.post<Product>(urlEndPoint, product);
+    return this.http.post<Product>(this.productURL, product);
   }
+  
   updateItem(product: Product) {
-    const urlEndPoint: string = "http://localhost:8080/api/products/";
-    return this.http.patch<Product>(urlEndPoint, product);
+    return this.http.patch<Product>(this.productURL, product);
   }
 
   public deleteItem(productIdToDelete: number): Observable<any> {
-    let urlEndpoint: string = "http://localhost:8080/api/products/" + productIdToDelete;
-    return this.http.delete<any>(urlEndpoint);  
+    return this.http.delete<any>(this.productURL+"/"+ productIdToDelete);  
   }
 
 }

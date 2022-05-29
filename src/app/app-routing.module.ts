@@ -24,7 +24,7 @@ const routes: Routes = [
   { path : "producto/crear", component: ProductFormComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
   { path : "producto/:idProduct/modificar", component: ProductFormComponent , canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/carrito", component: CartListComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
-  { path : "usuario/:userId/productos", component: ProductsComponent },
+  { path : "usuario/productos", component: ProductsComponent },
   { path : "usuario/cambios", component: ChangeComponent },
   { path : "usuario/cambios/nombre", component: ChangeNameComponent },
   { path : "usuario/cambios/email", component: ChangeEmailComponent },

@@ -31,7 +31,7 @@ export class TokenService {
   }
 
   public isAdmin(): boolean {
-    if(this.isLogged()) {
+    if(!this.isLogged()) {
       return false;
     }
     const token = this.getToken();
@@ -45,16 +45,17 @@ export class TokenService {
     return true;
   }
 
-  public getId(): number | null{
-    if(this.isLogged()) {
+  public getId(): string | null{
+    if(!this.isLogged()) {
       return null;
+    } else { 
+      const token = this.getToken();
+      const payload = token?.split('.')[1];
+      const payloadDecoded = atob(payload!);
+      const values = JSON.parse(payloadDecoded);
+      const id = values.id;
+      return id;
     }
-    const token = this.getToken();
-    const payload = token?.split('.')[1];
-    const payloadDecoded = atob(payload!);
-    const values = JSON.parse(payloadDecoded);
-    const id = values.id;
-    return id;
   }
 
   public logOut(): void {

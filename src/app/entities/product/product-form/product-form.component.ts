@@ -165,7 +165,7 @@ export class ProductFormComponent implements OnInit {
         this.toast("success", "Operacion realizada con exito", "Producto actualizado");
       },
       error: (err) => {
-        this.toast("error", "Fallo con el servidor", err);
+        this.toast("error", "Fallo con el servidor", JSON.stringify(err));
       }
     })
   }

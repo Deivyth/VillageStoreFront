@@ -5,8 +5,8 @@
         <form class="col-lg-5 col-md-6 col-sm-8 col-10 item-form" *ngIf="itemForm" [formGroup]="itemForm" novalidate autocomplete="off">
             
             <div class="form-group">
-                <img  *ngIf="product!.getImage()" [src]="'data:image/jpeg;base64,'+ product!.getImage()">
-                <img  *ngIf="product!.getImage() === undefined" src="./assets/box.png">
+                <img  *ngIf="product?.getImage()" [src]="'data:image/jpeg;base64,'+ product!.getImage()">
+                <img  *ngIf="product?.getImage() === undefined" src="./assets/box.png">
                 <label for="image">Imagen</label>
                 <input type="file" id="image" class="form-control" (change)="includeImageInItem($event)">
             </div>

@@ -1,7 +1,9 @@
+import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduct } from '../../product/product.interface';
 import { ProductService } from '../../product/product.service';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +12,6 @@ import { ProductService } from '../../product/product.service';
 })
 export class ProductsComponent implements OnInit {
 
-  userId?: number;
   title: string = "";
   products: IProduct[] = [];
 
@@ -30,34 +31,41 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
-
-
+    private productService: ProductService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit(): void {
-    if (this.route.snapshot.paramMap.get("categoryId")) {
-      this.userId = +this.route.snapshot.paramMap.get("categoryId")!;
-      this.title = "Artículos de la categoría " + this.userId;
-    }
-  else {
-      this.title = "Lista de artículos";
+    this.getAllItems();
   }
 
-  this.getAllItems();
+  private getAllItems(): void {
+
+    const filters: string | undefined = this.buildFilters();
+
+    this.productService.getUserProducts(this.page, this.size, this.sort, filters).subscribe({
+      next: (data: any) => {
+        this.products = data.content;
+        this.first = data.first;
+        this.last = data.last;
+        this.totalPages = data.totalPages;
+        this.totalElements = data.totalElements;
+      },
+      error: (err) => { this.handleError(err); }
+    })
   }
 
-  public nextPage():void {
+  public nextPage(): void {
     this.page = this.page + 1;
     this.getAllItems();
   }
 
-  public previousPage():void {
+  public previousPage(): void {
     this.page = this.page - 1;
     this.getAllItems();
   }
 
-  public searchByFilters():void {
+  public searchByFilters(): void {
     this.getAllItems();
   }
 
@@ -66,23 +74,22 @@ export class ProductsComponent implements OnInit {
   }
 
   public deleteItem(): void {
-    if (this.itemIdToDelete){
+    if (this.itemIdToDelete) {
       this.productService.deleteItem(this.itemIdToDelete).subscribe({
         next: (data) => {
           this.getAllItems();
         },
-        error: (err) => {this.handleError(err)} 
+        error: (err) => { this.handleError(err) }
       })
     }
   }
 
-  private buildFilters():string|undefined {
+  private buildFilters(): string | undefined {
     const filters: string[] = [];
-    
-    //To do
-    filters.push("supplier.id:EQUAL:" + 1);
 
-    if(this.nameFilter) {
+    filters.push("supplier.id:EQUAL:" + this.tokenService.getId());
+
+    if (this.nameFilter) {
       filters.push("name:MATCH:" + this.nameFilter);
     }
 
@@ -90,36 +97,19 @@ export class ProductsComponent implements OnInit {
       filters.push("price:LESS_THAN_EQUAL:" + this.priceFilter);
     }
 
-    if (filters.length >0) {
+    if (filters.length > 0) {
 
       let globalFilters: string = "";
       for (let filter of filters) {
         globalFilters = globalFilters + filter + ",";
       }
-      globalFilters = globalFilters.substring(0, globalFilters.length-1);
+      globalFilters = globalFilters.substring(0, globalFilters.length - 1);
       return globalFilters;
 
     } else {
       return undefined;
     }
   }
-
-  private getAllItems(): void {
-
-    const filters:string | undefined = this.buildFilters();
-
-    this.productService.getUserProducts(this.page, this.size, this.sort, filters).subscribe({
-      next: (data: any) => {
-        this.products = data.content; 
-        this.first = data.first;
-        this.last = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-      },
-      error: (err) => {this.handleError(err);}
-    })
-  }
-
 
   private handleError(error: any) {
     // lo que queramos

@@ -1,5 +1,6 @@
 export class Cart {
 
+    private id: number;
     private productId?: number;
     private quantity?: number;
     private supplierId?: number;
@@ -8,6 +9,7 @@ export class Cart {
     private productImage?: string;
     
     constructor(
+        id: number,
         userId?: number, 
         productId?: number, 
         productName?: string, 
@@ -15,6 +17,7 @@ export class Cart {
         productImage?: string, 
         quantity?: number
     ) {
+        this.id = id
         this.supplierId = userId
         this.productId = productId
         this.productName = productName
@@ -23,6 +26,13 @@ export class Cart {
         this.quantity = quantity
     }
 
+    public getId(): number  {
+        return this.id;
+    }
+
+    public setId(id: number): void {
+        this.id = id;
+    }
 
     public getUserId(): number | undefined {
         return this.supplierId;

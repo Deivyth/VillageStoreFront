@@ -30,13 +30,15 @@ export class CartListComponent implements OnInit {
     this.cartService.getCartProducts(Number(this.tokenService.getId())).subscribe({
       next: (cart) =>{ 
         cart.forEach((item) => {
-          let cart: Cart = new Cart(item.userId,item.productId,item.productName,item.productPrice,item.productImage,item.quantity);
+          let cart: Cart = new Cart(item.id,item.userId,item.productId,item.productName,item.productPrice,item.productImage,item.quantity);
           this.cart.push(cart);
           this.calculateTotalPrice(cart.getProductPrice()!, cart.getQuantity()!);
         })
       },
       error: (err) => {}
     });
+
+    
   }
 
   private calculateTotalPrice(price: number, quantity: number): void {

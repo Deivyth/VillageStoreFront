@@ -22,7 +22,7 @@
       </div>
       <div class="col-lg-2 col-12 d-flex justify-content-around user" *ngIf="isLogged() == true">
         <i class="bi bi-cart" [routerLink]="['usuario/carrito']">
-          <span>{{ cart.length }}</span>
+          <span>{{ getSizeCart() }}</span>
         </i>
         <i class="bi bi-person-circle" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i>
         <app-user-options class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"></app-user-options>

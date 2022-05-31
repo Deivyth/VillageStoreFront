@@ -49,10 +49,9 @@ export class CartCardComponent implements OnInit {
   changeCuantity(){
     const itemToSave: any = this.createFromForm();
     console.log(itemToSave);
-    this.cartService.updateProductToCart(1,itemToSave).subscribe({
+    this.cartService.updateProductToCart(itemToSave).subscribe({
       next: ( cart ) => {},
       error: ( err ) => {}
-
     });
   }
 
@@ -60,6 +59,14 @@ export class CartCardComponent implements OnInit {
     const price = this.item.getProductPrice()!;
     const quantity = this.item.getQuantity()!;
     return  price * quantity;
+  }
+
+  deleteProductCart(productId: number): void {
+    this.cartService.deleteProductCart(productId).subscribe({
+      next: ( cart ) => {},
+      error: ( err ) => {}
+    });
+    window.location.reload();
   }
 
 }

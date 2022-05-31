@@ -14,10 +14,6 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<IProduct[]>{
-    return this.http.get<IProduct[]>(this.productURL)
-  }
-
   getUserProducts(page: number, size: number, sort: string, filters?: string): Observable<IProduct[]> {
     let urlEndPoint: string = this.productURL+"?page=" + page + "&size=" + size + "&sort=" + sort;
     if(filters) {

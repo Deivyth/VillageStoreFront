@@ -53,19 +53,11 @@ export class ProductDetailsComponent implements OnInit {
     })
   }
 
-  private updateForm(cart: Cart): void{
-    this.cartForm?.patchValue({
-      productId: this.product?.getId(),
-      supplierId: cart.getUserId(),
-      quantity: cart.getQuantity()
-      
-    })
-  }
-
   private createFromForm() {
     //To Do
     return {
       ...this.cart,
+      userId: this.tokenService.getId(),
       productId: this.product?.getId(),
       quantity: this.cartForm?.get(['quantity'])!.value
     }
@@ -75,7 +67,7 @@ export class ProductDetailsComponent implements OnInit {
   buy(){
     if(this.tokenService.getToken()) {
       const itemToSave: any = this.createFromForm();
-      this.cartService.addProductToCart(this.userId,itemToSave).subscribe({
+      this.cartService.addProductToCart(itemToSave).subscribe({
         next: ( cart ) => {},
         error: ( err ) => {}
   
@@ -90,7 +82,7 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(){
     if(this.tokenService.getToken()) {
       const itemToSave: any = this.createFromForm(); 
-      this.cartService.addProductToCart(this.userId,itemToSave!).subscribe({
+      this.cartService.addProductToCart(itemToSave!).subscribe({
         next: ( cart ) => {
           
         },

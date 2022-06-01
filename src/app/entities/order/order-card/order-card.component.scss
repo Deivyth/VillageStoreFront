@@ -1,0 +1,38 @@
+:host{
+    position: relative;
+    margin-top: 10px;
+}
+
+.order-product{
+    display: flex;
+    flex-direction: row;
+}
+
+.order-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-image{
+    img{
+        max-height: 85px;
+        margin-left: 20px;
+    }
+}
+
+section{
+    margin-bottom: 46px;
+}
+
+.order-info{
+    position: absolute;
+    top: 50px;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #dee2e6;
+}

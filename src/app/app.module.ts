@@ -16,6 +16,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { AccordionModule } from 'primeng/accordion'
 
 import { ProductListComponent } from './entities/product/product-list/product-list.component';
 import { ProductCardComponent } from './entities/product/product-card/product-card.component';
@@ -31,6 +32,8 @@ import { ChangePasswordComponent } from './entities/user/menu/change-password/ch
 import { CartListComponent } from './entities/cart/cart-list/cart-list.component';
 import { CartCardComponent } from './entities/cart/cart-card/cart-card.component';
 import { ProductsComponent } from './entities/user/products/products.component';
+import { OrderListComponent } from './entities/order/order-list/order-list.component';
+import { OrderCardComponent } from './entities/order/order-card/order-card.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { ProductsComponent } from './entities/user/products/products.component';
     ChangePasswordComponent,
     CartListComponent,
     CartCardComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrderListComponent,
+    OrderCardComponent
   ],
   imports: [
     AppRoutingModule,
@@ -62,7 +67,8 @@ import { ProductsComponent } from './entities/user/products/products.component';
     AutoCompleteModule,
     ToastModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
+    AccordionModule
   ],
   providers: [HttpRequestIntercept],
   bootstrap: [AppComponent]

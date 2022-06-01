@@ -1,0 +1,23 @@
+<p-accordion class="accordion">
+    <p-accordionTab header=" {{ getHeader() }} ">
+        <div class="row">
+            <div class="order-product" *ngFor="let product of order.getProductLine()">
+                <div class="order-image">
+                    <img src="data:image/jpeg;base64,{{product?.productImage}}" alt="">
+                </div>
+                <div>
+                    <h6 [routerLink]="['/productos',product.productId]">{{ product.productName }}</h6>
+                    {{ product.price | currencyEUR }} x
+                    {{ product.quantity }}
+                </div>
+            </div>
+        </div>
+    </p-accordionTab>
+</p-accordion>
+
+<section>
+    <article class="order-info">
+        <div>Nº de pedido: {{ order.getId() }}</div>
+        <div>Factura <i class="bi bi-receipt"></i></div>
+    </article>
+</section>

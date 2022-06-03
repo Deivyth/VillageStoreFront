@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule, HttpRequest } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +33,7 @@ import { CartCardComponent } from './entities/cart/cart-card/cart-card.component
 import { ProductsComponent } from './entities/user/products/products.component';
 import { OrderListComponent } from './entities/order/order-list/order-list.component';
 import { OrderCardComponent } from './entities/order/order-card/order-card.component';
+import { OrderPdfComponent } from './entities/order/order-pdf/order-pdf.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import { OrderCardComponent } from './entities/order/order-card/order-card.compo
     CartCardComponent,
     ProductsComponent,
     OrderListComponent,
-    OrderCardComponent
+    OrderCardComponent,
+    OrderPdfComponent
   ],
   imports: [
     AppRoutingModule,

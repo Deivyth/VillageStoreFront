@@ -2,25 +2,27 @@ export class ProductLine {
     
      orderId: number;
      productId: number;
-     productName: string;
-     productImage: string;
      price: number;
      quantity: number;
+     productName?: string;
+     productImage?: string;
 
     constructor(
         orderId: number, 
         productId: number,
-        productName: string,
-        productImage: string,
         price: number, 
-        quantity: number
+        quantity: number,
+        productName?: string,
+        productImage?: string,
+
     ) {
         this.orderId = orderId
         this.productId = productId
-        this.productName = productName
-        this.productImage = productImage
         this.price = price
         this.quantity = quantity
+        this.productName = productName
+        this.productImage = productImage
+
     }
 
     public getOrderId(): number {
@@ -39,7 +41,7 @@ export class ProductLine {
         this.productId = productId;
     }
 
-    public getProductName(): string {
+    public getProductName(): string | undefined{
         return this.productName;
     }
 
@@ -47,7 +49,7 @@ export class ProductLine {
         this.productName = productName;
     }
 
-    public getProductImage(): string {
+    public getProductImage(): string | undefined{
         return this.productImage;
     }
 

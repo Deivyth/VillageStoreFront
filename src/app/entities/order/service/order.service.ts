@@ -17,13 +17,13 @@ export class OrderService {
   ) { }
 
   getOrders(): Observable<IOrder[]> {
-    const urlEndPoint: string = "http://localhost:8080/api/users/"+ this.tokenService.getId() +"/orders";
+    const urlEndPoint: string = "http://localhost:8080/api/users/orders";
     return this.http.get<IOrder[]>(urlEndPoint);
   };
 
   addOrder(order: Order){
-    const urlEndPoint: string = "http://localhost:8080/api/users/"+ this.tokenService.getId() +"/orders";
-    return this.http.post<Order>(urlEndPoint, order);
+    const urlEndPoint: string = "http://localhost:8080/api/users/orders";
+    return this.http.post<IOrder>(urlEndPoint, order);
   };
 
   addProducLineToOrder(productLine: ProductLine) {

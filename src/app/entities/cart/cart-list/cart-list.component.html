@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <main class="container">
     <section class="row">
         <article class="col-md-7 col-12">
@@ -7,7 +9,7 @@
             <div class="row summary">
                 <h4>Resumen Pedido</h4>
                 <p>Precio total:  {{totalPrice | currencyEUR}}</p>
-                <a class="btn btn-primary">Comprar</a>
+                <button class="btn btn-primary" (click)="createOrder()" [disabled]="!validated" >Comprar</button>
             </div>
         </article>
     </section>

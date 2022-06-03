@@ -4,8 +4,8 @@
         <article>
             <h4>Mi cuenta</h4>
             <ul>
-                <li [routerLink]="['usuario/cambios']">Datos</li>
-                <li>Pedidos</li>
+                <li [routerLink]="['usuario','cambios']">Datos</li>
+                <li [routerLink]="['usuario','pedidos']" >Pedidos</li>
                 <hr>
                 <li (click)="logout()" >
                      Cerrar sesion

@@ -25,13 +25,13 @@
                             </small>
                     
                             <small class="form-text text-danger" *ngIf="cartForm.get('quantity')!.errors!['min']">
-                                El valor debe ser positvo
+                                Debe añadir un articulo
                             </small>
                         </div>
                     </div>
                     <div>
-                        <input type="button" class="mt-2 mb-2 btn btn-outline-primary" value="Comprar" (click) = "buy()">
-                        <input type="button" class="btn btn-primary" value="Añadir a la cesta" (click) = "addToCart()">
+                        <input type="button" class="mt-2 mb-2 btn btn-outline-primary" value="Comprar" (click) = "buy()" [disabled]="cartForm.invalid">
+                        <input type="button" class="btn btn-primary" value="Añadir a la cesta" (click) = "addToCart()" [disabled]="cartForm.invalid">
                     </div>
                 </form>
             </div>

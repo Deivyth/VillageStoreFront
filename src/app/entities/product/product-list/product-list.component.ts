@@ -55,7 +55,15 @@ export class ProductListComponent implements OnInit {
     this.productService.getUserProducts(this.page, this.size, this.sort, filters).subscribe({
       next: (data: any) => {
         data.content.forEach((IProduct : IProduct)=> {
-          let product = new Product(IProduct.id, IProduct.name, IProduct.price,IProduct.supplierId, IProduct.categoryId,IProduct.supplierName,IProduct.categoryName, IProduct.description, IProduct.image);
+          let product = new Product(IProduct.id, 
+            IProduct.name, 
+            IProduct.price,
+            IProduct.supplierId, 
+            IProduct.categoryId,
+            IProduct.supplierName,
+            IProduct.categoryName, 
+            IProduct.description, 
+            IProduct.image);
           this.products.push(product);
         })
         this.first = data.first;

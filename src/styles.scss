@@ -5,6 +5,19 @@ html, body {
 
 $primary: #32CD30;
 
+.p-accordion p-accordiontab:last-child {
+
+    & .p-accordion-content {
+        position: relative;
+        top: 36px;
+    }
+
+    & .p-accordion-header:not(.p-highlight) .p-accordion-header-link {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+}
 
 .p-autocomplete {
     width: 100%;

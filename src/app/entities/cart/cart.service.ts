@@ -36,4 +36,10 @@ export class CartService {
     return this.http.delete<Cart>(urlEndPoint);
   };
 
+  deleteUserCart(userId: number) {
+    const urlEndPoint: string = "http://localhost:8080/api/users/"+ userId +"/cart";
+    this.sizeCart = 0;
+    return this.http.delete<Cart>(urlEndPoint);
+  }
+
 }

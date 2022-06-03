@@ -18,6 +18,6 @@
 <section>
     <article class="order-info">
         <div>Nº de pedido: {{ order.getId() }}</div>
-        <div>Factura <i class="bi bi-receipt"></i></div>
+        <div>Factura <i class="bi bi-receipt" (click)="savePDF()"></i></div>
     </article>
 </section>

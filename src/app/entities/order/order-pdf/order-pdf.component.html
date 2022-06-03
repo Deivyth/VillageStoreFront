@@ -1,0 +1,44 @@
+<main class="container mt-4">
+    <button (click)="savePDF()" class="btn btn-primary"> Guardar en pdf </button>
+    <section class="container mt-4" id="htmlData">
+        <article class="order-pdf-header row">
+            <div class="col-2">
+                <img src="./assets/logo.png" alt="logo">
+            </div>
+            <div class="col-10">
+                <span>Village Store</span>
+                <hr>
+            </div>
+        </article>
+    
+        <table class="table table-striped mt-4">
+            <tr class="table-primary">
+                <th>Cod</th>
+                <th>Articulo</th>
+                <th>Precio</th>
+                <th>Und</th>
+                <th>Total</th>
+            </tr>
+            <tr *ngFor="let product of productLines">
+                <th>{{product.productId}}</th>
+                <td>{{product.productName}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.price * product.quantity}}</td>
+            </tr>
+        </table>
+
+        <table class="table table-striped mt-4">
+            <tr class="table-primary">
+                <th>Base Imponible</th>
+                <th>IVA</th>
+                <th>TOTAL FACTURA</th>
+            </tr>
+            <tr>
+                <td>{{ getBase() }}</td>
+                <td>21%{{ getIVA() }}</td>
+                <td>{{ totalPrice }}</td>
+            </tr>
+        </table>
+    </section>
+</main>

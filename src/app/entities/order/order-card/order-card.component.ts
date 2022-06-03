@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Order } from '../model/order.model';
 import { ProductLine } from '../model/producLine.model';
+
 
 @Component({
   selector: 'app-order-card',
@@ -13,7 +15,10 @@ export class OrderCardComponent implements OnInit {
 
   @Input() order!: Order;
 
-  constructor(private datePipe: DatePipe) { }
+  constructor(
+    private datePipe: DatePipe,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +38,10 @@ export class OrderCardComponent implements OnInit {
     })
 
     return totalPrice;
+  }
+
+  savePDF(): void{
+    this.route.navigate(['usuario', 'pedidos',this.order.getId()]);
   }
 
 }

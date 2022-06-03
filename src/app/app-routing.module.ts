@@ -14,6 +14,7 @@ import { SignUpComponent } from './entities/user/sign-up/sign-up.component';
 import { ProdGuardService } from './config/guards/prod-guard.service';
 import { LoginGuard } from './config/guards/login.guard';
 import { OrderListComponent } from './entities/order/order-list/order-list.component';
+import { OrderPdfComponent } from './entities/order/order-pdf/order-pdf.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path : "usuario/carrito", component: CartListComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/productos", component: ProductsComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
   { path : "usuario/pedidos", component: OrderListComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] }},
+  { path : "usuario/pedidos/:idOrder", component: OrderPdfComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
   { path : "usuario/cambios", component: ChangeComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
   { path : "usuario/cambios/nombre", component: ChangeNameComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },
   { path : "usuario/cambios/email", component: ChangeEmailComponent, canActivate: [ProdGuardService], data: { espectedRol: ["admin","user"] } },

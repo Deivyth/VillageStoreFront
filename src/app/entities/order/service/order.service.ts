@@ -12,13 +12,17 @@ import { ProductLine } from '../model/producLine.model';
 export class OrderService {
 
   constructor(
-    private http: HttpClient,
-    private tokenService: TokenService
+    private http: HttpClient
   ) { }
 
   getOrders(): Observable<IOrder[]> {
     const urlEndPoint: string = "http://localhost:8080/api/users/orders";
     return this.http.get<IOrder[]>(urlEndPoint);
+  };
+
+  getOrderById(orderId: number): Observable<IOrder> {
+    const urlEndPoint: string = "http://localhost:8080/api/users/orders/"+orderId;
+    return this.http.get<IOrder>(urlEndPoint);
   };
 
   addOrder(order: Order){

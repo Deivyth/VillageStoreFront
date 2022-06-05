@@ -9,6 +9,20 @@ nav{
             align-items: center;
             justify-content: space-between;
             
+            form{
+                position: relative;
+
+                .p-element{
+                    width: 100%;
+                }
+
+                i{
+                    position: absolute;
+                    top:10px;
+                    right: 20px;
+                }
+            }
+
             article:first-child{
                 display: flex;
                 justify-content: center;

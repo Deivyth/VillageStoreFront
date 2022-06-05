@@ -4,13 +4,10 @@
       <article class="col-lg-auto col-2">
         <img class="navbar-brand" src="./assets/logo.png" alt="logo" [routerLink]="['']"/>
       </article>
-      <form class="col-lg-5 col-10 d-flex">
-        <input
-          class="form-control m-2"
-          type="search"
-          placeholder="Buscar ..."
-          aria-label="Search"
-        />
+      <form class="col-lg-5 col-10 d-flex search" [formGroup]="myGroup">
+        <p-autoComplete formControlName="category" name="category" [suggestions]="categories" 
+        (completeMethod)="getCategories($event)" field="name" [forceSelection]="true"></p-autoComplete>
+        <i class="bi bi-search" (click)="categorySelected()"></i>
       </form>
       <div class="col-lg-auto col-12 m-2 buttons" *ngIf="isLogged() == false">
         <a type="button" class="btn btn-outline-light me-2" [routerLink]="['entrar']">

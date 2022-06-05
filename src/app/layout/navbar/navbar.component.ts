@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { Cart } from 'src/app/entities/cart/cart.model';
 import { CartService } from 'src/app/entities/cart/cart.service';
 import { Category } from 'src/app/entities/category/category.model';
@@ -13,6 +15,7 @@ import { TokenService } from 'src/app/entities/user/service/token.service';
 })
 export class NavbarComponent implements OnInit {
 
+  @Input() categoryId:Subject<number> = new Subject<number>();
   cart: Cart[] = [];
 
   page: number = 0;
@@ -22,17 +25,24 @@ export class NavbarComponent implements OnInit {
   nameFilter?: string;
   categories: Category[] = [];
 
+  myGroup!: FormGroup;
+
   constructor(
     private cartService: CartService,
     private categoryService: CategoryService,
     private productService: ProductService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
     if(this.tokenService.isLogged()) {
       this.getProducts();
     }
+
+    this.myGroup = new FormGroup({
+      category: new FormControl()
+    })
   }
 
   getProducts(): void{
@@ -46,8 +56,6 @@ export class NavbarComponent implements OnInit {
       },
       error: (err) => {}
     });
-
-    
   }
 
   getSizeCart(): number {
@@ -67,39 +75,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  handleDropdown(event: any): void {
-    let categoriesSearch: string | undefined;
-
-    if(event?.query) {
-      categoriesSearch = event.query;
-    }
-
-    this.categoryService.getAllCategories(categoriesSearch).subscribe({
-      next: (categoriesFilter) => { this.categories = categoriesFilter },
-      error: (err) => {  }
-    });
-  }
-
-  private buildFilters():string|undefined {
-    const filters: string[] = [];
-
-    if(this.nameFilter) {
-      filters.push("name:MATCH:" + this.nameFilter);
-    }
-
-
-    if (filters.length >0) {
-
-      let globalFilters: string = "";
-      for (let filter of filters) {
-        globalFilters = globalFilters + filter + ",";
-      }
-      globalFilters = globalFilters.substring(0, globalFilters.length-1);
-      return globalFilters;
-
-    } else {
-      return undefined;
-    }
+  categorySelected():void{
+    if(this.myGroup.get(["category"])!.value){
+      this.productService.emitStyle(this.myGroup.get(["category"])!.value.id);
+    }  
   }
 
   isLogged(): boolean {

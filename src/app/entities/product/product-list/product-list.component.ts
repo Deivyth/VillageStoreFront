@@ -24,17 +24,31 @@ export class ProductListComponent implements OnInit {
   totalPages: number = 0;
   totalElements: number = 0;
 
-  nameFilter?: string;
+  category?: string;
   priceFilter?: number;
+  categoryId?: number | null;
 
   itemIdToDelete?: number;
 
   constructor(
-    private productService:ProductService
-  ) { }
+    private productService:ProductService,
+    
+  ) { 
+
+    productService.styleEmitted.subscribe(style => {
+      if(style != this.categoryId) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.getAllItems();
+    this.getCategoryId();
+  }
+
+  getCategoryId() {
+    this.categoryId = this.productService.getActualStyleId();
   }
 
   public nextPage():void {
@@ -80,12 +94,8 @@ export class ProductListComponent implements OnInit {
   private buildFilters():string|undefined {
     const filters: string[] = [];
 
-    if(this.nameFilter) {
-      filters.push("name:MATCH:" + this.nameFilter);
-    }
-
-    if (this.priceFilter) {
-      filters.push("price:LESS_THAN_EQUAL:" + this.priceFilter);
+    if(this.categoryId) {
+      filters.push("category.id:EQUAL:" + this.categoryId);
     }
 
     if (filters.length >0) {

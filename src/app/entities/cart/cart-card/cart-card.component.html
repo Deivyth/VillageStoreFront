@@ -13,7 +13,7 @@
         <form *ngIf="cartForm" [formGroup]="cartForm">
             <div>
                 <label>Cantidad: </label>
-                <input type="number" formControlName="quantity" id="quantity">
+                {{ item.getQuantity() }}
             </div>
         </form>
         <div>

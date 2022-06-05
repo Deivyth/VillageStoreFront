@@ -20,5 +20,4 @@ export class CategoryService {
     return this.http.get<Category[]>(urlEndpoint);
   }
 
-
 }

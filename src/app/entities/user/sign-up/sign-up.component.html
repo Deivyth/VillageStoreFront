@@ -1,31 +1,85 @@
 <main class="container mt-2">
     <section class="row">
         <form class="col-lg-5 col-md-6 col-sm-8 col-10" [formGroup]="signupForm!" novalidate autocomplete="off">
+
             <div class="form-group">
                 <label for="email">Email</label>
-                <i class="bi bi-at"></i>
-                <input type="email" id="email" placeholder="Email" formControlName="email">
+                <div class="form-item">
+                    <i class="bi bi-at"></i>
+                    <input type="email" id="email" placeholder="Email" formControlName="email">
+                </div>
+                <div *ngIf="(signupForm.get('email')!.dirty && signupForm.get('email')!.errors)">
+                    <small class="form-text text-danger" *ngIf="signupForm.get('email')!.errors!['required']">
+                        Este campo es requerido
+                    </small>
+                    <small class="form-text text-danger" *ngIf="signupForm.get('email')!.errors!['email']">
+                        Email no valido
+                    </small>
+                </div>
             </div>
+
             <div class="form-group">
-                <label for="email">Nombre</label>
-                <i class="bi bi-person-fill"></i>
-                <input type="email" id="email" placeholder="Nombre" formControlName="name">
+                <label for="nombre">Nombre</label>
+                <div class="form-item">
+                    <i class="bi bi-person-fill"></i>
+                    <input type="text" placeholder="Nombre" formControlName="name">
+                </div>
+
+                <div *ngIf="(signupForm.get('name')!.dirty && signupForm.get('name')!.errors)">
+                    <small class="form-text text-danger" *ngIf="signupForm.get('name')!.errors!['required']">
+                        Este campo es requerido
+                    </small>
+                </div>
             </div>
+
             <div class="form-group">
                 <label for="">Contraseña</label>
-                <i class="bi bi-lock-fill"></i>
-                <input type="password" placeholder="Contraseña" formControlName="password">
+
+                <div class="form-item">
+                    <input type="password" placeholder="Contraseña" formControlName="password">
+                    <i class="bi bi-lock-fill"></i>
+                </div>
+
+                <div *ngIf="(signupForm.get('password')!.dirty && signupForm.get('password')!.errors)">
+                    <small class="form-text text-danger" *ngIf="signupForm.get('password')!.errors!['required']">
+                        Este campo es requerido
+                    </small>
+                    <small class="form-text text-danger" *ngIf="signupForm.get('password')!.errors!['minlength']">
+                        Debe tener 6 caracteres
+                    </small>
+                </div>
+
+                <div *ngIf="(signupForm.get('password')!.dirty) && signupForm.get('password')!.errors">
+                    <div class="form-text text-danger" *ngIf="signupForm.get('password')!.errors!['number']">Falta un numero</div>
+                    <div class="form-text text-danger" *ngIf="signupForm.get('password')!.errors!['upper']">Falta una mayuscula</div>
+                    <div class="form-text text-danger" *ngIf="signupForm.get('password')!.errors!['lower']">Falta una minuscula</div>
+                </div>
             </div>
-            
-            <div  class="form-group">
+
+            <div class="form-group">
                 <label for="">Repetir contraseña</label>
-                <i class="bi bi-lock-fill"></i>
-                <input type="password" placeholder="Repetir contraseña" formControlName="repeatPassword">
+                <div  class="form-item">
+                    <i class="bi bi-lock-fill"></i>
+                    <input type="password" placeholder="Repetir contraseña" formControlName="repeat">
+                </div>
 
-                <small *ngIf="this.signupForm?.errors">La contraseña no es igual</small>
+                <div *ngIf="(signupForm.get('repeat')!.dirty && signupForm.get('repeat')!.errors)">
+                    <small class="form-text text-danger" *ngIf="signupForm.get('repeat')!.errors!['required']">
+                        Este campo es requerido
+                    </small>
+                </div>
+                <div *ngIf="(signupForm.get('repeat')!.dirty && signupForm.errors)">
+                    <small class="form-text text-danger"> Las contraseñas no son iguales </small>
+                </div>
+
             </div>
 
-            <input type="button" class="btn btn-primary" value="Registrarse" (click)="onRegister()" [disabled]="signupForm!.invalid">
+            <div class="form-buttons mt-4">
+                <input type="button" class="btn btn-primary" value="Registrarse"
+                (click)="onRegister()" [disabled]="signupForm!.invalid">
+                <input type="button" class="btn btn-primary" value="Volver" [routerLink]="['']">
+            </div>
+
         </form>
     </section>
 </main>

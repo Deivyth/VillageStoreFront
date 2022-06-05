@@ -1,12 +1,14 @@
+<p-toast></p-toast>
+
 <main class="container mt-2">
     <section class="row">
-        <form action="" class="col-lg-5 col-md-6 col-sm-8 col-10">
+        <form action="" class="col-lg-5 col-md-6 col-sm-8 col-10" [formGroup]="emailForm">
             <div>
                 <label for="email">Email</label>
                 <i class="bi bi-at"></i>
-                <input type="email" id="email" placeholder="Email" required>
+                <input type="email" id="email" placeholder="Email" required formControlName="email">
             </div>
-            <input type="button" value="Cambiar">
+            <input type="button" class="btn btn-primary" value="Cambiar" (click)="changeEmail()">
         </form>
     </section>
 </main>

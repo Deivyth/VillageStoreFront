@@ -17,7 +17,9 @@
                 <form *ngIf="cartForm" [formGroup]="cartForm" novalidate autocomplete="off">
                     <div class="form-group">
                         <label>Cantidad: </label>
-                        <input type="number" formControlName="quantity" min="0">
+                        <div class="form-item">
+                            <input type="number" formControlName="quantity" min="0">
+                        </div>
 
                         <div *ngIf="(cartForm.get('quantity')!.dirty && cartForm.get('quantity')!.errors)">
                             <small class="form-text text-danger" *ngIf="cartForm.get('quantity')!.errors!['required']">
@@ -29,9 +31,13 @@
                             </small>
                         </div>
                     </div>
-                    <div>
-                        <input type="button" class="mt-2 mb-2 btn btn-outline-primary" value="Comprar" (click) = "buy()" [disabled]="cartForm.invalid">
-                        <input type="button" class="btn btn-primary" value="Añadir a la cesta" (click) = "addToCart()" [disabled]="cartForm.invalid">
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="button" class="btn btn-primary w-100" value="Comprar" (click) = "buy()" [disabled]="cartForm.invalid">
+                        </div>
+                        <div class="col-12">
+                            <input type="button" class="btn btn-outline-primary w-100 mt-2" value="Añadir a la cesta" (click) = "addToCart()" [disabled]="cartForm.invalid">
+                        </div>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { Cart } from '../cart.model';
 import { CartService } from '../cart.service';
 
@@ -15,7 +16,8 @@ export class CartCardComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private cartService: CartService
+    private cartService: CartService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {

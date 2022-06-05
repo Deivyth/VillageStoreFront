@@ -4,18 +4,24 @@
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <i class="bi bi-at"></i>
-                <input type="email" id="email" placeholder="Email" formControlName="email">
+                <div class="form-item">
+                    <i class="bi bi-at"></i>
+                    <input type="email" id="email" placeholder="Email" formControlName="email">
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="">Contraseña</label>
-                <i class="bi bi-lock-fill"></i>
-                <input type="password" placeholder="Contraseña" formControlName="password">
+                <div class="form-item">
+                    <i class="bi bi-lock-fill"></i>
+                    <input type="password" placeholder="Contraseña" formControlName="password">
+                </div>
             </div>
 
-            <input type="button" value="Entrar" (click)="onLogin()" [disabled]="loginForm.invalid"
-                class="btn btn-primary">
+            <div class="form-buttons">
+                <input type="button" value="Entrar" (click)="onLogin()" [disabled]="loginForm.invalid" class="btn btn-primary">
+                <input type="button" class="btn btn-primary" value="Volver" [routerLink]="['']">
+            </div>
         </form>
     </section>
 </main>

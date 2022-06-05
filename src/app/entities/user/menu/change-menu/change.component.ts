@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from '../../service/token.service';
 
 @Component({
   selector: 'app-change',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeComponent implements OnInit {
 
-  constructor() { }
+  email!: string;
+  name!: string;
+
+  constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    this.getEmail();
+    this.getName();
+  }
+
+  getEmail(){
+    this.email = this.tokenService.getEmail()!;
+  }
+
+  getName(){
+    this.name = this.tokenService.getName()!;
   }
 
 }

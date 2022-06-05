@@ -1,0 +1,60 @@
+
+@import "./color.scss";
+
+.p-accordion p-accordiontab:last-child {
+
+    & .p-accordion-content {
+        position: relative;
+        top: 36px;
+    }
+
+    & .p-accordion-header:not(.p-highlight) .p-accordion-header-link {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+}
+
+.p-autocomplete {
+    width: 100%;
+
+    .p-inputtext {
+        width: 100%;
+        margin: 0;
+    }
+
+    .p-inputtext:enabled:focus {
+        box-shadow: 0 0 0 0.2rem #1bcc2a80;
+        border-color: $primary;
+    }
+
+    .p-button {
+        color: $dark;
+        background: $light;
+        border: 1px solid $light;
+
+        &:hover{
+            color: $dark;
+            background: $light;
+            border: 1px solid $light;
+        }
+        &:focus {
+            box-shadow: 0 0 0 0.2rem #1bcc2a80;
+        }
+    }
+
+    .p-autocomplete-multiple-container {
+        padding: 0.02rem 0.75rem;
+        width: 100%;
+
+        .p-autocomplete-token {
+            background: $primary;
+        }
+
+        &:not(.p-disabled).p-focus {
+            box-shadow: 0 0 0 0.2rem #1bcc2a80;
+            border-color: $primary;
+        }
+    }
+
+}

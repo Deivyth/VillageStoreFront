@@ -12,11 +12,12 @@ import { ProductLine } from '../model/producLine.model';
 export class OrderService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private tokenService: TokenService
   ) { }
 
-  getOrders(): Observable<IOrder[]> {
-    const urlEndPoint: string = "http://localhost:8080/api/users/orders";
+  getOrdersByUser(): Observable<IOrder[]> {
+    const urlEndPoint: string = "http://localhost:8080/api/users/"+ this.tokenService.getId() +"/orders";
     return this.http.get<IOrder[]>(urlEndPoint);
   };
 

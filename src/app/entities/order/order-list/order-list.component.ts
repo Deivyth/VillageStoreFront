@@ -20,7 +20,7 @@ export class OrderListComponent implements OnInit {
   }
 
   private getOrders(): void {
-    this.orderService.getOrders().subscribe({
+    this.orderService.getOrdersByUser().subscribe({
       next: (orderRest: IOrder[]) => {
         orderRest.forEach((orderRest) =>{
           let order = new Order(orderRest.id, orderRest.userId, orderRest.state, orderRest.payment, orderRest.date, orderRest.productLine);
